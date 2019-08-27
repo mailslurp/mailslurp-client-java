@@ -27,7 +27,7 @@ import java.io.IOException;
  * Analysis of email
  */
 @ApiModel(description = "Analysis of email")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-27T13:00:41.950272+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-27T13:16:19.017658+02:00[Europe/Berlin]")
 public class EmailAnalysis {
   public static final String SERIALIZED_NAME_DKIM_VERDICT = "dkimVerdict";
   @SerializedName(SERIALIZED_NAME_DKIM_VERDICT)
