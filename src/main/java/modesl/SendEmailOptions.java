@@ -29,7 +29,7 @@ import java.util.List;
  * Options for sending an email message from an inbox
  */
 @ApiModel(description = "Options for sending an email message from an inbox")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-27T12:40:29.556437+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-27T13:00:41.950272+02:00[Europe/Berlin]")
 public class SendEmailOptions {
   public static final String SERIALIZED_NAME_BCC = "bcc";
   @SerializedName(SERIALIZED_NAME_BCC)
