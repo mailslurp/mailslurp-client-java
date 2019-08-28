@@ -7,6 +7,7 @@ Method | HTTP request | Description
 [**createNewEmailAddress**](CommonOperationsApi.md#createNewEmailAddress) | **POST** /newEmailAddress | Create new email address
 [**sendEmailSimple**](CommonOperationsApi.md#sendEmailSimple) | **POST** /sendEmail | Send an email from a random email address
 [**waitForLatestEmail**](CommonOperationsApi.md#waitForLatestEmail) | **GET** /fetchLatestEmail | Fetch inbox&#39;s latest email or if empty wait for email to arrive
+[**waitForNthEmail**](CommonOperationsApi.md#waitForNthEmail) | **GET** /waitForNthEmail | Wait for or fetch the email with a given index in the inbox specified
 
 
 <a name="createNewEmailAddress"></a>
@@ -157,6 +158,61 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **inboxEmailAddress** | **String**| Email address of the inbox we are fetching emails from | [optional]
  **inboxId** | [**UUID**](.md)| Id of the inbox we are fetching emails from | [optional]
+
+### Return type
+
+[**Email**](Email.md)
+
+### Authorization
+
+[API_KEY](../README.md#API_KEY)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="waitForNthEmail"></a>
+# **waitForNthEmail**
+> Email waitForNthEmail(inboxId, index)
+
+Wait for or fetch the email with a given index in the inbox specified
+
+### Example
+```java
+// Import classes:
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.CommonOperationsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: API_KEY
+ApiKeyAuth API_KEY = (ApiKeyAuth) defaultClient.getAuthentication("API_KEY");
+API_KEY.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//API_KEY.setApiKeyPrefix("Token");
+
+CommonOperationsApi apiInstance = new CommonOperationsApi();
+UUID inboxId = new UUID(); // UUID | Id of the inbox we are fetching emails from
+Integer index = 56; // Integer | Zero based index of the email to wait for
+try {
+    Email result = apiInstance.waitForNthEmail(inboxId, index);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling CommonOperationsApi#waitForNthEmail");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inboxId** | [**UUID**](.md)| Id of the inbox we are fetching emails from | [optional]
+ **index** | **Integer**| Zero based index of the email to wait for | [optional]
 
 ### Return type
 
