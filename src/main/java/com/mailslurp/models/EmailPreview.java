@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
  * Preview of an email message. For full message call the message endpoint with a given message id.
  */
 @ApiModel(description = "Preview of an email message. For full message call the message endpoint with a given message id.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-28T15:19:02.178154+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-28T15:44:09.789270+02:00[Europe/Berlin]")
 public class EmailPreview {
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
