@@ -33,11 +33,11 @@ Enterprise Plan Required
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.ExtraOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -88,11 +88,11 @@ Enterprise Plan Required
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.ExtraOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -142,11 +142,11 @@ Enterprise Plan Required
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.ExtraOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -196,11 +196,11 @@ Create a new inbox and ephemeral email address to send and receive from. This is
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.ExtraOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -247,11 +247,11 @@ Get notified whenever an inbox receives an email via a WebHook URL. An emailID w
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.ExtraOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -304,11 +304,11 @@ Deletes an email and removes it from the inbox
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.ExtraOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -358,11 +358,11 @@ Permanently delete an inbox and associated email address
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.ExtraOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -410,11 +410,11 @@ Delete and disable a WebHook for an Inbox
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.ExtraOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -466,11 +466,11 @@ Returns the specified attachment for a given email as a byte stream (file downlo
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.ExtraOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -522,11 +522,11 @@ Returns a email summary object with headers and content. To retrieve the raw unp
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.ExtraOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -577,11 +577,11 @@ List emails that an inbox has received. Only emails that are sent to the inbox&#
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.ExtraOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -640,11 +640,11 @@ Returns an inbox&#39;s properties, including its email address and ID.
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.ExtraOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -695,11 +695,11 @@ List the inboxes you have created
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.ExtraOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -746,11 +746,11 @@ Returns a raw, unparsed and unprocessed email
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.ExtraOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -799,11 +799,11 @@ Get all WebHooks for an Inbox
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.ExtraOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -854,11 +854,11 @@ Send an email from the inbox&#39;s email address. Specify the email recipients a
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.ExtraOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 

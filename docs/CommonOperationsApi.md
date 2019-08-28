@@ -20,11 +20,11 @@ Returns an Inbox with an &#x60;id&#x60; and an &#x60;emailAddress&#x60;
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.CommonOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.CommonOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -71,11 +71,11 @@ To specify an email address first create an inbox and use that with the other se
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.CommonOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.CommonOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
@@ -125,11 +125,11 @@ Will return either the last received email or wait for an email to arrive and re
 ### Example
 ```java
 // Import classes:
-//import mailslurp.ApiClient;
-//import mailslurp.ApiException;
-//import mailslurp.Configuration;
-//import mailslurp.auth.*;
-//import api.CommonOperationsApi;
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.CommonOperationsApi;
 
 ApiClient defaultClient = Configuration.getDefaultApiClient();
 
