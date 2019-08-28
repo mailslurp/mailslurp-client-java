@@ -13,7 +13,7 @@
 
 package com.mailslurp.client;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-28T13:46:52.807793+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-28T15:16:06.179408+02:00[Europe/Berlin]")
 public class Pair {
     private String name = "";
     private String value = "";
