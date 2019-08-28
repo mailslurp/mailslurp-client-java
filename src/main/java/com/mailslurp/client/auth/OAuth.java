@@ -18,7 +18,7 @@ import com.mailslurp.client.Pair;
 import java.util.Map;
 import java.util.List;
 
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-28T15:16:06.179408+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-08-28T15:16:59.388707+02:00[Europe/Berlin]")
 public class OAuth implements Authentication {
   private String accessToken;
 
