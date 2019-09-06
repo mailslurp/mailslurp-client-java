@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * CreateWebhookOptions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-06T21:07:35.590+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-06T21:36:20.774+02:00[Europe/Berlin]")
 public class CreateWebhookOptions {
   public static final String SERIALIZED_NAME_BASIC_AUTH = "basicAuth";
   @SerializedName(SERIALIZED_NAME_BASIC_AUTH)

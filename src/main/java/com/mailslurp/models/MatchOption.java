@@ -26,7 +26,7 @@ import java.io.IOException;
 /**
  * MatchOption
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-06T21:07:35.590+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-06T21:36:20.774+02:00[Europe/Berlin]")
 public class MatchOption {
   /**
    * The email property to match on. One of SUBJECT, TO, BCC, CC or FROM
