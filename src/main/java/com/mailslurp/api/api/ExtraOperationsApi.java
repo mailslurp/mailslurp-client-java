@@ -665,14 +665,14 @@ public class ExtraOperationsApi {
         return call;
     }
     /**
-     * Build call for deleteEmail
+     * Build call for deleteEmail1
      * @param emailId emailId (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteEmailCall(UUID emailId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call deleteEmail1Call(UUID emailId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
@@ -714,15 +714,15 @@ public class ExtraOperationsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteEmailValidateBeforeCall(UUID emailId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call deleteEmail1ValidateBeforeCall(UUID emailId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'emailId' is set
         if (emailId == null) {
-            throw new ApiException("Missing the required parameter 'emailId' when calling deleteEmail(Async)");
+            throw new ApiException("Missing the required parameter 'emailId' when calling deleteEmail1(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = deleteEmailCall(emailId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = deleteEmail1Call(emailId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -733,8 +733,8 @@ public class ExtraOperationsApi {
      * @param emailId emailId (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void deleteEmail(UUID emailId) throws ApiException {
-        deleteEmailWithHttpInfo(emailId);
+    public void deleteEmail1(UUID emailId) throws ApiException {
+        deleteEmail1WithHttpInfo(emailId);
     }
 
     /**
@@ -744,8 +744,8 @@ public class ExtraOperationsApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> deleteEmailWithHttpInfo(UUID emailId) throws ApiException {
-        com.squareup.okhttp.Call call = deleteEmailValidateBeforeCall(emailId, null, null);
+    public ApiResponse<Void> deleteEmail1WithHttpInfo(UUID emailId) throws ApiException {
+        com.squareup.okhttp.Call call = deleteEmail1ValidateBeforeCall(emailId, null, null);
         return apiClient.execute(call);
     }
 
@@ -757,7 +757,7 @@ public class ExtraOperationsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteEmailAsync(UUID emailId, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call deleteEmail1Async(UUID emailId, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -778,7 +778,7 @@ public class ExtraOperationsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteEmailValidateBeforeCall(emailId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = deleteEmail1ValidateBeforeCall(emailId, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }

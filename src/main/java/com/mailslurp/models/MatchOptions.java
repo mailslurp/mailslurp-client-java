@@ -19,57 +19,47 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import com.mailslurp.models.MatchOption;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * BasicAuthOptions
+ * Optional filter for matching emails based on fields
  */
+@ApiModel(description = "Optional filter for matching emails based on fields")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-06T21:07:35.590+02:00[Europe/Berlin]")
-public class BasicAuthOptions {
-  public static final String SERIALIZED_NAME_USERNAME = "username";
-  @SerializedName(SERIALIZED_NAME_USERNAME)
-  private String username;
+public class MatchOptions {
+  public static final String SERIALIZED_NAME_MATCHES = "matches";
+  @SerializedName(SERIALIZED_NAME_MATCHES)
+  private List<MatchOption> matches = null;
 
-  public static final String SERIALIZED_NAME_PASSWORD = "password";
-  @SerializedName(SERIALIZED_NAME_PASSWORD)
-  private String password;
+  public MatchOptions matches(List<MatchOption> matches) {
+    this.matches = matches;
+    return this;
+  }
 
-  public BasicAuthOptions username(String username) {
-    this.username = username;
+  public MatchOptions addMatchesItem(MatchOption matchesItem) {
+    if (this.matches == null) {
+      this.matches = new ArrayList<MatchOption>();
+    }
+    this.matches.add(matchesItem);
     return this;
   }
 
    /**
-   * Get username
-   * @return username
+   * 1 or more match options. Options are additive so if one does not match the email is excluded from results
+   * @return matches
   **/
-  @ApiModelProperty(required = true, value = "")
-  public String getUsername() {
-    return username;
+  @ApiModelProperty(value = "1 or more match options. Options are additive so if one does not match the email is excluded from results")
+  public List<MatchOption> getMatches() {
+    return matches;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public BasicAuthOptions password(String password) {
-    this.password = password;
-    return this;
-  }
-
-   /**
-   * Get password
-   * @return password
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
+  public void setMatches(List<MatchOption> matches) {
+    this.matches = matches;
   }
 
 
@@ -81,24 +71,22 @@ public class BasicAuthOptions {
   if (o == null || getClass() != o.getClass()) {
     return false;
   }
-    BasicAuthOptions basicAuthOptions = (BasicAuthOptions) o;
-    return ObjectUtils.equals(this.username, basicAuthOptions.username) &&
-    ObjectUtils.equals(this.password, basicAuthOptions.password);
+    MatchOptions matchOptions = (MatchOptions) o;
+    return ObjectUtils.equals(this.matches, matchOptions.matches);
   }
 
   @Override
   public int hashCode() {
-    return ObjectUtils.hashCodeMulti(username, password);
+    return ObjectUtils.hashCodeMulti(matches);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class BasicAuthOptions {\n");
+    sb.append("class MatchOptions {\n");
     
-    sb.append("    username: ").append(toIndentedString(username)).append("\n");
-    sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("    matches: ").append(toIndentedString(matches)).append("\n");
     sb.append("}");
     return sb.toString();
   }
