@@ -31,10 +31,12 @@ import com.mailslurp.models.BulkSendEmailOptions;
 import com.mailslurp.models.CreateWebhookOptions;
 import com.mailslurp.models.Email;
 import com.mailslurp.models.EmailPreview;
+import java.io.File;
 import com.mailslurp.models.Inbox;
 import org.threeten.bp.OffsetDateTime;
 import com.mailslurp.models.SendEmailOptions;
 import java.util.UUID;
+import com.mailslurp.models.UploadAttachmentOptions;
 import com.mailslurp.models.Webhook;
 
 import java.lang.reflect.Type;
@@ -665,14 +667,14 @@ public class ExtraOperationsApi {
         return call;
     }
     /**
-     * Build call for deleteEmail
+     * Build call for deleteEmail1
      * @param emailId emailId (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call deleteEmailCall(UUID emailId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call deleteEmail1Call(UUID emailId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
@@ -714,15 +716,15 @@ public class ExtraOperationsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call deleteEmailValidateBeforeCall(UUID emailId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call deleteEmail1ValidateBeforeCall(UUID emailId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'emailId' is set
         if (emailId == null) {
-            throw new ApiException("Missing the required parameter 'emailId' when calling deleteEmail(Async)");
+            throw new ApiException("Missing the required parameter 'emailId' when calling deleteEmail1(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = deleteEmailCall(emailId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = deleteEmail1Call(emailId, progressListener, progressRequestListener);
         return call;
 
     }
@@ -733,8 +735,8 @@ public class ExtraOperationsApi {
      * @param emailId emailId (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void deleteEmail(UUID emailId) throws ApiException {
-        deleteEmailWithHttpInfo(emailId);
+    public void deleteEmail1(UUID emailId) throws ApiException {
+        deleteEmail1WithHttpInfo(emailId);
     }
 
     /**
@@ -744,8 +746,8 @@ public class ExtraOperationsApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> deleteEmailWithHttpInfo(UUID emailId) throws ApiException {
-        com.squareup.okhttp.Call call = deleteEmailValidateBeforeCall(emailId, null, null);
+    public ApiResponse<Void> deleteEmail1WithHttpInfo(UUID emailId) throws ApiException {
+        com.squareup.okhttp.Call call = deleteEmail1ValidateBeforeCall(emailId, null, null);
         return apiClient.execute(call);
     }
 
@@ -757,7 +759,7 @@ public class ExtraOperationsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call deleteEmailAsync(UUID emailId, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call deleteEmail1Async(UUID emailId, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -778,7 +780,7 @@ public class ExtraOperationsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = deleteEmailValidateBeforeCall(emailId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = deleteEmail1ValidateBeforeCall(emailId, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
@@ -2035,6 +2037,268 @@ public class ExtraOperationsApi {
 
         com.squareup.okhttp.Call call = sendEmailValidateBeforeCall(inboxId, sendEmailOptions, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for uploadAttachment
+     * @param uploadAttachmentOptions uploadOptions (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call uploadAttachmentCall(UploadAttachmentOptions uploadAttachmentOptions, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = uploadAttachmentOptions;
+
+        // create path and map variables
+        String localVarPath = "/attachments";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "API_KEY" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call uploadAttachmentValidateBeforeCall(UploadAttachmentOptions uploadAttachmentOptions, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'uploadAttachmentOptions' is set
+        if (uploadAttachmentOptions == null) {
+            throw new ApiException("Missing the required parameter 'uploadAttachmentOptions' when calling uploadAttachment(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = uploadAttachmentCall(uploadAttachmentOptions, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Upload an attachment for sending
+     * When sending emails with attachments first upload each attachment with this endpoint. Record the returned attachment IDs. Then use these attachment IDs in the SendEmailOptions when sending an email. This means that attachments can easily be reused.
+     * @param uploadAttachmentOptions uploadOptions (required)
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String uploadAttachment(UploadAttachmentOptions uploadAttachmentOptions) throws ApiException {
+        ApiResponse<String> resp = uploadAttachmentWithHttpInfo(uploadAttachmentOptions);
+        return resp.getData();
+    }
+
+    /**
+     * Upload an attachment for sending
+     * When sending emails with attachments first upload each attachment with this endpoint. Record the returned attachment IDs. Then use these attachment IDs in the SendEmailOptions when sending an email. This means that attachments can easily be reused.
+     * @param uploadAttachmentOptions uploadOptions (required)
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> uploadAttachmentWithHttpInfo(UploadAttachmentOptions uploadAttachmentOptions) throws ApiException {
+        com.squareup.okhttp.Call call = uploadAttachmentValidateBeforeCall(uploadAttachmentOptions, null, null);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Upload an attachment for sending (asynchronously)
+     * When sending emails with attachments first upload each attachment with this endpoint. Record the returned attachment IDs. Then use these attachment IDs in the SendEmailOptions when sending an email. This means that attachments can easily be reused.
+     * @param uploadAttachmentOptions uploadOptions (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call uploadAttachmentAsync(UploadAttachmentOptions uploadAttachmentOptions, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = uploadAttachmentValidateBeforeCall(uploadAttachmentOptions, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for uploadMultipartForm
+     * @param file file (required)
+     * @param contentType contentType (optional)
+     * @param filename filename (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call uploadMultipartFormCall(File file, String contentType, String filename, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/attachments/multipart";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (contentType != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("contentType", contentType));
+        }
+
+        if (filename != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("filename", filename));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        if (file != null) {
+            localVarFormParams.put("file", file);
+        }
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "multipart/form-data"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "API_KEY" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call uploadMultipartFormValidateBeforeCall(File file, String contentType, String filename, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'file' is set
+        if (file == null) {
+            throw new ApiException("Missing the required parameter 'file' when calling uploadMultipartForm(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = uploadMultipartFormCall(file, contentType, filename, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Upload an attachment for sending using Multipart Form
+     * When sending emails with attachments first upload each attachment with this endpoint. Record the returned attachment IDs. Then use these attachment IDs in the SendEmailOptions when sending an email. This means that attachments can easily be reused.
+     * @param file file (required)
+     * @param contentType contentType (optional)
+     * @param filename filename (optional)
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String uploadMultipartForm(File file, String contentType, String filename) throws ApiException {
+        ApiResponse<String> resp = uploadMultipartFormWithHttpInfo(file, contentType, filename);
+        return resp.getData();
+    }
+
+    /**
+     * Upload an attachment for sending using Multipart Form
+     * When sending emails with attachments first upload each attachment with this endpoint. Record the returned attachment IDs. Then use these attachment IDs in the SendEmailOptions when sending an email. This means that attachments can easily be reused.
+     * @param file file (required)
+     * @param contentType contentType (optional)
+     * @param filename filename (optional)
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> uploadMultipartFormWithHttpInfo(File file, String contentType, String filename) throws ApiException {
+        com.squareup.okhttp.Call call = uploadMultipartFormValidateBeforeCall(file, contentType, filename, null, null);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Upload an attachment for sending using Multipart Form (asynchronously)
+     * When sending emails with attachments first upload each attachment with this endpoint. Record the returned attachment IDs. Then use these attachment IDs in the SendEmailOptions when sending an email. This means that attachments can easily be reused.
+     * @param file file (required)
+     * @param contentType contentType (optional)
+     * @param filename filename (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call uploadMultipartFormAsync(File file, String contentType, String filename, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = uploadMultipartFormValidateBeforeCall(file, contentType, filename, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
 }

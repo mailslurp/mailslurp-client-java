@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**bulkSendEmails**](ExtraOperationsApi.md#bulkSendEmails) | **POST** /bulk/send | Bulk Send Emails
 [**createInbox**](ExtraOperationsApi.md#createInbox) | **POST** /inboxes | Create an Inbox (email address)
 [**createWebhook**](ExtraOperationsApi.md#createWebhook) | **POST** /inboxes/{inboxId}/webhooks | Attach a WebHook URL to an inbox
-[**deleteEmail**](ExtraOperationsApi.md#deleteEmail) | **DELETE** /emails/{emailId} | Delete Email
+[**deleteEmail1**](ExtraOperationsApi.md#deleteEmail1) | **DELETE** /emails/{emailId} | Delete Email
 [**deleteInbox**](ExtraOperationsApi.md#deleteInbox) | **DELETE** /inboxes/{inboxId} | Delete Inbox / Email Address
 [**deleteWebhook**](ExtraOperationsApi.md#deleteWebhook) | **DELETE** /inboxes/{inboxId}/webhooks/{webhookId} | Delete and disable a WebHook for an Inbox
 [**downloadAttachment**](ExtraOperationsApi.md#downloadAttachment) | **GET** /emails/{emailId}/attachments/{attachmentId} | Get email attachment
@@ -20,6 +20,8 @@ Method | HTTP request | Description
 [**getRawEmailContents**](ExtraOperationsApi.md#getRawEmailContents) | **GET** /emails/{emailId}/raw | Get Raw Email Content
 [**getWebhooks**](ExtraOperationsApi.md#getWebhooks) | **GET** /inboxes/{inboxId}/webhooks | Get all WebHooks for an Inbox
 [**sendEmail**](ExtraOperationsApi.md#sendEmail) | **POST** /inboxes/{inboxId} | Send Email
+[**uploadAttachment**](ExtraOperationsApi.md#uploadAttachment) | **POST** /attachments | Upload an attachment for sending
+[**uploadMultipartForm**](ExtraOperationsApi.md#uploadMultipartForm) | **POST** /attachments/multipart | Upload an attachment for sending using Multipart Form
 
 
 <a name="bulkCreateInboxes"></a>
@@ -293,9 +295,9 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json
  - **Accept**: application/json
 
-<a name="deleteEmail"></a>
-# **deleteEmail**
-> deleteEmail(emailId)
+<a name="deleteEmail1"></a>
+# **deleteEmail1**
+> deleteEmail1(emailId)
 
 Delete Email
 
@@ -321,9 +323,9 @@ API_KEY.setApiKey("YOUR API KEY");
 ExtraOperationsApi apiInstance = new ExtraOperationsApi();
 UUID emailId = new UUID(); // UUID | emailId
 try {
-    apiInstance.deleteEmail(emailId);
+    apiInstance.deleteEmail1(emailId);
 } catch (ApiException e) {
-    System.err.println("Exception when calling ExtraOperationsApi#deleteEmail");
+    System.err.println("Exception when calling ExtraOperationsApi#deleteEmail1");
     e.printStackTrace();
 }
 ```
@@ -898,4 +900,118 @@ null (empty response body)
 
  - **Content-Type**: application/json
  - **Accept**: Not defined
+
+<a name="uploadAttachment"></a>
+# **uploadAttachment**
+> String uploadAttachment(uploadAttachmentOptions)
+
+Upload an attachment for sending
+
+When sending emails with attachments first upload each attachment with this endpoint. Record the returned attachment IDs. Then use these attachment IDs in the SendEmailOptions when sending an email. This means that attachments can easily be reused.
+
+### Example
+```java
+// Import classes:
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: API_KEY
+ApiKeyAuth API_KEY = (ApiKeyAuth) defaultClient.getAuthentication("API_KEY");
+API_KEY.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//API_KEY.setApiKeyPrefix("Token");
+
+ExtraOperationsApi apiInstance = new ExtraOperationsApi();
+UploadAttachmentOptions uploadAttachmentOptions = new UploadAttachmentOptions(); // UploadAttachmentOptions | uploadOptions
+try {
+    String result = apiInstance.uploadAttachment(uploadAttachmentOptions);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ExtraOperationsApi#uploadAttachment");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **uploadAttachmentOptions** | [**UploadAttachmentOptions**](UploadAttachmentOptions.md)| uploadOptions |
+
+### Return type
+
+**String**
+
+### Authorization
+
+[API_KEY](../README.md#API_KEY)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="uploadMultipartForm"></a>
+# **uploadMultipartForm**
+> String uploadMultipartForm(file, contentType, filename)
+
+Upload an attachment for sending using Multipart Form
+
+When sending emails with attachments first upload each attachment with this endpoint. Record the returned attachment IDs. Then use these attachment IDs in the SendEmailOptions when sending an email. This means that attachments can easily be reused.
+
+### Example
+```java
+// Import classes:
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: API_KEY
+ApiKeyAuth API_KEY = (ApiKeyAuth) defaultClient.getAuthentication("API_KEY");
+API_KEY.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//API_KEY.setApiKeyPrefix("Token");
+
+ExtraOperationsApi apiInstance = new ExtraOperationsApi();
+File file = new File("/path/to/file"); // File | file
+String contentType = "contentType_example"; // String | contentType
+String filename = "filename_example"; // String | filename
+try {
+    String result = apiInstance.uploadMultipartForm(file, contentType, filename);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ExtraOperationsApi#uploadMultipartForm");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **file** | **File**| file |
+ **contentType** | **String**| contentType | [optional]
+ **filename** | **String**| filename | [optional]
+
+### Return type
+
+**String**
+
+### Authorization
+
+[API_KEY](../README.md#API_KEY)
+
+### HTTP request headers
+
+ - **Content-Type**: multipart/form-data
+ - **Accept**: application/json
 

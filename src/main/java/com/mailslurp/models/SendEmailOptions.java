@@ -30,8 +30,12 @@ import java.util.List;
  * Options for sending an email message from an inbox
  */
 @ApiModel(description = "Options for sending an email message from an inbox")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-02T13:41:51.935+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-11T15:09:31.351+02:00[Europe/Berlin]")
 public class SendEmailOptions {
+  public static final String SERIALIZED_NAME_ATTACHMENTS = "attachments";
+  @SerializedName(SERIALIZED_NAME_ATTACHMENTS)
+  private List<String> attachments = null;
+
   public static final String SERIALIZED_NAME_BCC = "bcc";
   @SerializedName(SERIALIZED_NAME_BCC)
   private List<String> bcc = null;
@@ -67,6 +71,32 @@ public class SendEmailOptions {
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
   private List<String> to = new ArrayList<String>();
+
+  public SendEmailOptions attachments(List<String> attachments) {
+    this.attachments = attachments;
+    return this;
+  }
+
+  public SendEmailOptions addAttachmentsItem(String attachmentsItem) {
+    if (this.attachments == null) {
+      this.attachments = new ArrayList<String>();
+    }
+    this.attachments.add(attachmentsItem);
+    return this;
+  }
+
+   /**
+   * Optional list of attachment IDs to send with this email
+   * @return attachments
+  **/
+  @ApiModelProperty(value = "Optional list of attachment IDs to send with this email")
+  public List<String> getAttachments() {
+    return attachments;
+  }
+
+  public void setAttachments(List<String> attachments) {
+    this.attachments = attachments;
+  }
 
   public SendEmailOptions bcc(List<String> bcc) {
     this.bcc = bcc;
@@ -261,7 +291,8 @@ public class SendEmailOptions {
       return false;
     }
     SendEmailOptions sendEmailOptions = (SendEmailOptions) o;
-    return Objects.equals(this.bcc, sendEmailOptions.bcc) &&
+    return Objects.equals(this.attachments, sendEmailOptions.attachments) &&
+        Objects.equals(this.bcc, sendEmailOptions.bcc) &&
         Objects.equals(this.body, sendEmailOptions.body) &&
         Objects.equals(this.cc, sendEmailOptions.cc) &&
         Objects.equals(this.charset, sendEmailOptions.charset) &&
@@ -274,7 +305,7 @@ public class SendEmailOptions {
 
   @Override
   public int hashCode() {
-    return Objects.hash(bcc, body, cc, charset, from, html, replyTo, subject, to);
+    return Objects.hash(attachments, bcc, body, cc, charset, from, html, replyTo, subject, to);
   }
 
 
@@ -283,6 +314,7 @@ public class SendEmailOptions {
     StringBuilder sb = new StringBuilder();
     sb.append("class SendEmailOptions {\n");
     
+    sb.append("    attachments: ").append(toIndentedString(attachments)).append("\n");
     sb.append("    bcc: ").append(toIndentedString(bcc)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    cc: ").append(toIndentedString(cc)).append("\n");

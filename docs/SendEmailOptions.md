@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**attachments** | **List&lt;String&gt;** | Optional list of attachment IDs to send with this email |  [optional]
 **bcc** | **List&lt;String&gt;** | Optional list of bcc destination email addresses |  [optional]
 **body** | **String** | Contents of email |  [optional]
 **cc** | **List&lt;String&gt;** | Optional list of cc destination email addresses |  [optional]

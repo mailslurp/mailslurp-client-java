@@ -28,7 +28,9 @@ import java.io.IOException;
 
 
 import com.mailslurp.models.Email;
+import com.mailslurp.models.EmailPreview;
 import com.mailslurp.models.Inbox;
+import com.mailslurp.models.MatchOptions;
 import com.mailslurp.models.SendEmailOptions;
 import java.util.UUID;
 
@@ -170,6 +172,127 @@ public class CommonOperationsApi {
         return call;
     }
     /**
+     * Build call for deleteEmail
+     * @param emailId emailId (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call deleteEmailCall(UUID emailId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/deleteEmail";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (emailId != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("emailId", emailId));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "API_KEY" };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call deleteEmailValidateBeforeCall(UUID emailId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'emailId' is set
+        if (emailId == null) {
+            throw new ApiException("Missing the required parameter 'emailId' when calling deleteEmail(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = deleteEmailCall(emailId, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Delete an email
+     * Deletes an email
+     * @param emailId emailId (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void deleteEmail(UUID emailId) throws ApiException {
+        deleteEmailWithHttpInfo(emailId);
+    }
+
+    /**
+     * Delete an email
+     * Deletes an email
+     * @param emailId emailId (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> deleteEmailWithHttpInfo(UUID emailId) throws ApiException {
+        com.squareup.okhttp.Call call = deleteEmailValidateBeforeCall(emailId, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Delete an email (asynchronously)
+     * Deletes an email
+     * @param emailId emailId (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call deleteEmailAsync(UUID emailId, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = deleteEmailValidateBeforeCall(emailId, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
      * Build call for deleteEmailAddress
      * @param inboxId inboxId (required)
      * @param progressListener Progress listener
@@ -291,6 +414,127 @@ public class CommonOperationsApi {
         return call;
     }
     /**
+     * Build call for emptyInbox
+     * @param inboxId inboxId (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call emptyInboxCall(UUID inboxId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/emptyInbox";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (inboxId != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("inboxId", inboxId));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "API_KEY" };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call emptyInboxValidateBeforeCall(UUID inboxId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'inboxId' is set
+        if (inboxId == null) {
+            throw new ApiException("Missing the required parameter 'inboxId' when calling emptyInbox(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = emptyInboxCall(inboxId, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Delete all emails in an inbox
+     * Deletes all emails
+     * @param inboxId inboxId (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void emptyInbox(UUID inboxId) throws ApiException {
+        emptyInboxWithHttpInfo(inboxId);
+    }
+
+    /**
+     * Delete all emails in an inbox
+     * Deletes all emails
+     * @param inboxId inboxId (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> emptyInboxWithHttpInfo(UUID inboxId) throws ApiException {
+        com.squareup.okhttp.Call call = emptyInboxValidateBeforeCall(inboxId, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Delete all emails in an inbox (asynchronously)
+     * Deletes all emails
+     * @param inboxId inboxId (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call emptyInboxAsync(UUID inboxId, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = emptyInboxValidateBeforeCall(inboxId, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
      * Build call for sendEmailSimple
      * @param sendEmailOptions sendEmailOptions (required)
      * @param progressListener Progress listener
@@ -408,28 +652,33 @@ public class CommonOperationsApi {
         return call;
     }
     /**
-     * Build call for waitForLatestEmail
-     * @param inboxEmailAddress Email address of the inbox we are fetching emails from (optional)
+     * Build call for waitForEmailCount
+     * @param count Number of emails to wait for. Must be greater that 1 (optional)
      * @param inboxId Id of the inbox we are fetching emails from (optional)
+     * @param timeout Max milliseconds to wait (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call waitForLatestEmailCall(String inboxEmailAddress, UUID inboxId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call waitForEmailCountCall(Integer count, UUID inboxId, Long timeout, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
-        String localVarPath = "/fetchLatestEmail";
+        String localVarPath = "/waitForEmailCount";
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (inboxEmailAddress != null) {
-            localVarQueryParams.addAll(apiClient.parameterToPair("inboxEmailAddress", inboxEmailAddress));
+        if (count != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("count", count));
         }
 
         if (inboxId != null) {
             localVarQueryParams.addAll(apiClient.parameterToPair("inboxId", inboxId));
+        }
+
+        if (timeout != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("timeout", timeout));
         }
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
@@ -465,51 +714,54 @@ public class CommonOperationsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call waitForLatestEmailValidateBeforeCall(String inboxEmailAddress, UUID inboxId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call waitForEmailCountValidateBeforeCall(Integer count, UUID inboxId, Long timeout, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = waitForLatestEmailCall(inboxEmailAddress, inboxId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = waitForEmailCountCall(count, inboxId, timeout, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Fetch inbox&#39;s latest email or if empty wait for email to arrive
-     * Will return either the last received email or wait for an email to arrive and return that. If you need to wait for an email for a non-empty inbox see the other receive methods.
-     * @param inboxEmailAddress Email address of the inbox we are fetching emails from (optional)
+     * Wait for and return count number of emails 
+     * Will only wait if count is greater that the found emails in given inbox.If you need to wait for an email for a non-empty inbox see the other receive methods.
+     * @param count Number of emails to wait for. Must be greater that 1 (optional)
      * @param inboxId Id of the inbox we are fetching emails from (optional)
-     * @return Email
+     * @param timeout Max milliseconds to wait (optional)
+     * @return List&lt;EmailPreview&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Email waitForLatestEmail(String inboxEmailAddress, UUID inboxId) throws ApiException {
-        ApiResponse<Email> resp = waitForLatestEmailWithHttpInfo(inboxEmailAddress, inboxId);
+    public List<EmailPreview> waitForEmailCount(Integer count, UUID inboxId, Long timeout) throws ApiException {
+        ApiResponse<List<EmailPreview>> resp = waitForEmailCountWithHttpInfo(count, inboxId, timeout);
         return resp.getData();
     }
 
     /**
-     * Fetch inbox&#39;s latest email or if empty wait for email to arrive
-     * Will return either the last received email or wait for an email to arrive and return that. If you need to wait for an email for a non-empty inbox see the other receive methods.
-     * @param inboxEmailAddress Email address of the inbox we are fetching emails from (optional)
+     * Wait for and return count number of emails 
+     * Will only wait if count is greater that the found emails in given inbox.If you need to wait for an email for a non-empty inbox see the other receive methods.
+     * @param count Number of emails to wait for. Must be greater that 1 (optional)
      * @param inboxId Id of the inbox we are fetching emails from (optional)
-     * @return ApiResponse&lt;Email&gt;
+     * @param timeout Max milliseconds to wait (optional)
+     * @return ApiResponse&lt;List&lt;EmailPreview&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Email> waitForLatestEmailWithHttpInfo(String inboxEmailAddress, UUID inboxId) throws ApiException {
-        com.squareup.okhttp.Call call = waitForLatestEmailValidateBeforeCall(inboxEmailAddress, inboxId, null, null);
-        Type localVarReturnType = new TypeToken<Email>(){}.getType();
+    public ApiResponse<List<EmailPreview>> waitForEmailCountWithHttpInfo(Integer count, UUID inboxId, Long timeout) throws ApiException {
+        com.squareup.okhttp.Call call = waitForEmailCountValidateBeforeCall(count, inboxId, timeout, null, null);
+        Type localVarReturnType = new TypeToken<List<EmailPreview>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Fetch inbox&#39;s latest email or if empty wait for email to arrive (asynchronously)
-     * Will return either the last received email or wait for an email to arrive and return that. If you need to wait for an email for a non-empty inbox see the other receive methods.
-     * @param inboxEmailAddress Email address of the inbox we are fetching emails from (optional)
+     * Wait for and return count number of emails  (asynchronously)
+     * Will only wait if count is greater that the found emails in given inbox.If you need to wait for an email for a non-empty inbox see the other receive methods.
+     * @param count Number of emails to wait for. Must be greater that 1 (optional)
      * @param inboxId Id of the inbox we are fetching emails from (optional)
+     * @param timeout Max milliseconds to wait (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call waitForLatestEmailAsync(String inboxEmailAddress, UUID inboxId, final ApiCallback<Email> callback) throws ApiException {
+    public com.squareup.okhttp.Call waitForEmailCountAsync(Integer count, UUID inboxId, Long timeout, final ApiCallback<List<EmailPreview>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -530,8 +782,281 @@ public class CommonOperationsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = waitForLatestEmailValidateBeforeCall(inboxEmailAddress, inboxId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = waitForEmailCountValidateBeforeCall(count, inboxId, timeout, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<EmailPreview>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for waitForLatestEmail
+     * @param inboxId Id of the inbox we are fetching emails from (optional)
+     * @param timeout Max milliseconds to wait (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call waitForLatestEmailCall(UUID inboxId, Long timeout, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/waitForLatestEmail";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (inboxId != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("inboxId", inboxId));
+        }
+
+        if (timeout != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("timeout", timeout));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "API_KEY" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call waitForLatestEmailValidateBeforeCall(UUID inboxId, Long timeout, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+
+        com.squareup.okhttp.Call call = waitForLatestEmailCall(inboxId, timeout, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Fetch inbox&#39;s latest email or if empty wait for email to arrive
+     * Will return either the last received email or wait for an email to arrive and return that. If you need to wait for an email for a non-empty inbox see the other receive methods.
+     * @param inboxId Id of the inbox we are fetching emails from (optional)
+     * @param timeout Max milliseconds to wait (optional)
+     * @return Email
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Email waitForLatestEmail(UUID inboxId, Long timeout) throws ApiException {
+        ApiResponse<Email> resp = waitForLatestEmailWithHttpInfo(inboxId, timeout);
+        return resp.getData();
+    }
+
+    /**
+     * Fetch inbox&#39;s latest email or if empty wait for email to arrive
+     * Will return either the last received email or wait for an email to arrive and return that. If you need to wait for an email for a non-empty inbox see the other receive methods.
+     * @param inboxId Id of the inbox we are fetching emails from (optional)
+     * @param timeout Max milliseconds to wait (optional)
+     * @return ApiResponse&lt;Email&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Email> waitForLatestEmailWithHttpInfo(UUID inboxId, Long timeout) throws ApiException {
+        com.squareup.okhttp.Call call = waitForLatestEmailValidateBeforeCall(inboxId, timeout, null, null);
         Type localVarReturnType = new TypeToken<Email>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Fetch inbox&#39;s latest email or if empty wait for email to arrive (asynchronously)
+     * Will return either the last received email or wait for an email to arrive and return that. If you need to wait for an email for a non-empty inbox see the other receive methods.
+     * @param inboxId Id of the inbox we are fetching emails from (optional)
+     * @param timeout Max milliseconds to wait (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call waitForLatestEmailAsync(UUID inboxId, Long timeout, final ApiCallback<Email> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = waitForLatestEmailValidateBeforeCall(inboxId, timeout, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Email>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for waitForMatchingEmail
+     * @param matchOptions matchOptions (required)
+     * @param count Number of emails to wait for. Must be greater that 1 (optional)
+     * @param inboxId Id of the inbox we are fetching emails from (optional)
+     * @param timeout Max milliseconds to wait (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call waitForMatchingEmailCall(MatchOptions matchOptions, Integer count, UUID inboxId, Long timeout, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = matchOptions;
+
+        // create path and map variables
+        String localVarPath = "/waitForMatchingEmails";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (count != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("count", count));
+        }
+
+        if (inboxId != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("inboxId", inboxId));
+        }
+
+        if (timeout != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("timeout", timeout));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "API_KEY" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call waitForMatchingEmailValidateBeforeCall(MatchOptions matchOptions, Integer count, UUID inboxId, Long timeout, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'matchOptions' is set
+        if (matchOptions == null) {
+            throw new ApiException("Missing the required parameter 'matchOptions' when calling waitForMatchingEmail(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = waitForMatchingEmailCall(matchOptions, count, inboxId, timeout, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Wait or return list of emails that match simple matching patterns
+     * Results must also meet provided count. Match options allow simple CONTAINS or EQUALS filtering on SUBJECT, TO, BCC, CC, and FROM.
+     * @param matchOptions matchOptions (required)
+     * @param count Number of emails to wait for. Must be greater that 1 (optional)
+     * @param inboxId Id of the inbox we are fetching emails from (optional)
+     * @param timeout Max milliseconds to wait (optional)
+     * @return List&lt;EmailPreview&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<EmailPreview> waitForMatchingEmail(MatchOptions matchOptions, Integer count, UUID inboxId, Long timeout) throws ApiException {
+        ApiResponse<List<EmailPreview>> resp = waitForMatchingEmailWithHttpInfo(matchOptions, count, inboxId, timeout);
+        return resp.getData();
+    }
+
+    /**
+     * Wait or return list of emails that match simple matching patterns
+     * Results must also meet provided count. Match options allow simple CONTAINS or EQUALS filtering on SUBJECT, TO, BCC, CC, and FROM.
+     * @param matchOptions matchOptions (required)
+     * @param count Number of emails to wait for. Must be greater that 1 (optional)
+     * @param inboxId Id of the inbox we are fetching emails from (optional)
+     * @param timeout Max milliseconds to wait (optional)
+     * @return ApiResponse&lt;List&lt;EmailPreview&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<EmailPreview>> waitForMatchingEmailWithHttpInfo(MatchOptions matchOptions, Integer count, UUID inboxId, Long timeout) throws ApiException {
+        com.squareup.okhttp.Call call = waitForMatchingEmailValidateBeforeCall(matchOptions, count, inboxId, timeout, null, null);
+        Type localVarReturnType = new TypeToken<List<EmailPreview>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Wait or return list of emails that match simple matching patterns (asynchronously)
+     * Results must also meet provided count. Match options allow simple CONTAINS or EQUALS filtering on SUBJECT, TO, BCC, CC, and FROM.
+     * @param matchOptions matchOptions (required)
+     * @param count Number of emails to wait for. Must be greater that 1 (optional)
+     * @param inboxId Id of the inbox we are fetching emails from (optional)
+     * @param timeout Max milliseconds to wait (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call waitForMatchingEmailAsync(MatchOptions matchOptions, Integer count, UUID inboxId, Long timeout, final ApiCallback<List<EmailPreview>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = waitForMatchingEmailValidateBeforeCall(matchOptions, count, inboxId, timeout, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<EmailPreview>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -539,12 +1064,13 @@ public class CommonOperationsApi {
      * Build call for waitForNthEmail
      * @param inboxId Id of the inbox we are fetching emails from (optional)
      * @param index Zero based index of the email to wait for (optional)
+     * @param timeout Max milliseconds to wait (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call waitForNthEmailCall(UUID inboxId, Integer index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call waitForNthEmailCall(UUID inboxId, Integer index, Long timeout, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
@@ -560,6 +1086,10 @@ public class CommonOperationsApi {
             localVarQueryParams.addAll(apiClient.parameterToPair("index", index));
         }
 
+        if (timeout != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("timeout", timeout));
+        }
+
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
@@ -593,10 +1123,10 @@ public class CommonOperationsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call waitForNthEmailValidateBeforeCall(UUID inboxId, Integer index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call waitForNthEmailValidateBeforeCall(UUID inboxId, Integer index, Long timeout, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = waitForNthEmailCall(inboxId, index, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = waitForNthEmailCall(inboxId, index, timeout, progressListener, progressRequestListener);
         return call;
 
     }
@@ -606,11 +1136,12 @@ public class CommonOperationsApi {
      * 
      * @param inboxId Id of the inbox we are fetching emails from (optional)
      * @param index Zero based index of the email to wait for (optional)
+     * @param timeout Max milliseconds to wait (optional)
      * @return Email
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Email waitForNthEmail(UUID inboxId, Integer index) throws ApiException {
-        ApiResponse<Email> resp = waitForNthEmailWithHttpInfo(inboxId, index);
+    public Email waitForNthEmail(UUID inboxId, Integer index, Long timeout) throws ApiException {
+        ApiResponse<Email> resp = waitForNthEmailWithHttpInfo(inboxId, index, timeout);
         return resp.getData();
     }
 
@@ -619,11 +1150,12 @@ public class CommonOperationsApi {
      * 
      * @param inboxId Id of the inbox we are fetching emails from (optional)
      * @param index Zero based index of the email to wait for (optional)
+     * @param timeout Max milliseconds to wait (optional)
      * @return ApiResponse&lt;Email&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Email> waitForNthEmailWithHttpInfo(UUID inboxId, Integer index) throws ApiException {
-        com.squareup.okhttp.Call call = waitForNthEmailValidateBeforeCall(inboxId, index, null, null);
+    public ApiResponse<Email> waitForNthEmailWithHttpInfo(UUID inboxId, Integer index, Long timeout) throws ApiException {
+        com.squareup.okhttp.Call call = waitForNthEmailValidateBeforeCall(inboxId, index, timeout, null, null);
         Type localVarReturnType = new TypeToken<Email>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -633,11 +1165,12 @@ public class CommonOperationsApi {
      * 
      * @param inboxId Id of the inbox we are fetching emails from (optional)
      * @param index Zero based index of the email to wait for (optional)
+     * @param timeout Max milliseconds to wait (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call waitForNthEmailAsync(UUID inboxId, Integer index, final ApiCallback<Email> callback) throws ApiException {
+    public com.squareup.okhttp.Call waitForNthEmailAsync(UUID inboxId, Integer index, Long timeout, final ApiCallback<Email> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -658,7 +1191,7 @@ public class CommonOperationsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = waitForNthEmailValidateBeforeCall(inboxId, index, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = waitForNthEmailValidateBeforeCall(inboxId, index, timeout, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Email>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

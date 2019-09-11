@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * Representation of an inbox with an email address. Emails can be sent to or from this email address.
  */
 @ApiModel(description = "Representation of an inbox with an email address. Emails can be sent to or from this email address.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-02T13:41:51.935+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-11T15:09:31.351+02:00[Europe/Berlin]")
 public class Inbox {
   public static final String SERIALIZED_NAME_CREATED = "created";
   @SerializedName(SERIALIZED_NAME_CREATED)
