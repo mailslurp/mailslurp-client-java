@@ -28,7 +28,7 @@ import java.io.IOException;
  * Options for uploading files for attachments
  */
 @ApiModel(description = "Options for uploading files for attachments")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-11T16:08:37.473+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-11T16:11:05.338+02:00[Europe/Berlin]")
 public class UploadAttachmentOptions {
   public static final String SERIALIZED_NAME_BASE64_CONTENTS = "base64Contents";
   @SerializedName(SERIALIZED_NAME_BASE64_CONTENTS)

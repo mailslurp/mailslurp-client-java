@@ -30,7 +30,7 @@ import java.util.List;
  * Options for sending an email message from an inbox
  */
 @ApiModel(description = "Options for sending an email message from an inbox")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-11T16:08:37.473+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-11T16:11:05.338+02:00[Europe/Berlin]")
 public class SendEmailOptions {
   public static final String SERIALIZED_NAME_ATTACHMENTS = "attachments";
   @SerializedName(SERIALIZED_NAME_ATTACHMENTS)
