@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * BasicAuthOptions
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-11T15:09:31.351+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-11T16:08:37.473+02:00[Europe/Berlin]")
 public class BasicAuthOptions {
   public static final String SERIALIZED_NAME_USERNAME = "username";
   @SerializedName(SERIALIZED_NAME_USERNAME)

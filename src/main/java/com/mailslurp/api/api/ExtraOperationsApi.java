@@ -2105,11 +2105,11 @@ public class ExtraOperationsApi {
      * Upload an attachment for sending
      * When sending emails with attachments first upload each attachment with this endpoint. Record the returned attachment IDs. Then use these attachment IDs in the SendEmailOptions when sending an email. This means that attachments can easily be reused.
      * @param uploadAttachmentOptions uploadOptions (required)
-     * @return String
+     * @return List&lt;String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public String uploadAttachment(UploadAttachmentOptions uploadAttachmentOptions) throws ApiException {
-        ApiResponse<String> resp = uploadAttachmentWithHttpInfo(uploadAttachmentOptions);
+    public List<String> uploadAttachment(UploadAttachmentOptions uploadAttachmentOptions) throws ApiException {
+        ApiResponse<List<String>> resp = uploadAttachmentWithHttpInfo(uploadAttachmentOptions);
         return resp.getData();
     }
 
@@ -2117,12 +2117,12 @@ public class ExtraOperationsApi {
      * Upload an attachment for sending
      * When sending emails with attachments first upload each attachment with this endpoint. Record the returned attachment IDs. Then use these attachment IDs in the SendEmailOptions when sending an email. This means that attachments can easily be reused.
      * @param uploadAttachmentOptions uploadOptions (required)
-     * @return ApiResponse&lt;String&gt;
+     * @return ApiResponse&lt;List&lt;String&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<String> uploadAttachmentWithHttpInfo(UploadAttachmentOptions uploadAttachmentOptions) throws ApiException {
+    public ApiResponse<List<String>> uploadAttachmentWithHttpInfo(UploadAttachmentOptions uploadAttachmentOptions) throws ApiException {
         com.squareup.okhttp.Call call = uploadAttachmentValidateBeforeCall(uploadAttachmentOptions, null, null);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<String>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -2134,7 +2134,7 @@ public class ExtraOperationsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call uploadAttachmentAsync(UploadAttachmentOptions uploadAttachmentOptions, final ApiCallback<String> callback) throws ApiException {
+    public com.squareup.okhttp.Call uploadAttachmentAsync(UploadAttachmentOptions uploadAttachmentOptions, final ApiCallback<List<String>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2156,7 +2156,7 @@ public class ExtraOperationsApi {
         }
 
         com.squareup.okhttp.Call call = uploadAttachmentValidateBeforeCall(uploadAttachmentOptions, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<String>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -2242,11 +2242,11 @@ public class ExtraOperationsApi {
      * @param file file (required)
      * @param contentType contentType (optional)
      * @param filename filename (optional)
-     * @return String
+     * @return List&lt;String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public String uploadMultipartForm(File file, String contentType, String filename) throws ApiException {
-        ApiResponse<String> resp = uploadMultipartFormWithHttpInfo(file, contentType, filename);
+    public List<String> uploadMultipartForm(File file, String contentType, String filename) throws ApiException {
+        ApiResponse<List<String>> resp = uploadMultipartFormWithHttpInfo(file, contentType, filename);
         return resp.getData();
     }
 
@@ -2256,12 +2256,12 @@ public class ExtraOperationsApi {
      * @param file file (required)
      * @param contentType contentType (optional)
      * @param filename filename (optional)
-     * @return ApiResponse&lt;String&gt;
+     * @return ApiResponse&lt;List&lt;String&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<String> uploadMultipartFormWithHttpInfo(File file, String contentType, String filename) throws ApiException {
+    public ApiResponse<List<String>> uploadMultipartFormWithHttpInfo(File file, String contentType, String filename) throws ApiException {
         com.squareup.okhttp.Call call = uploadMultipartFormValidateBeforeCall(file, contentType, filename, null, null);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<String>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -2275,7 +2275,7 @@ public class ExtraOperationsApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call uploadMultipartFormAsync(File file, String contentType, String filename, final ApiCallback<String> callback) throws ApiException {
+    public com.squareup.okhttp.Call uploadMultipartFormAsync(File file, String contentType, String filename, final ApiCallback<List<String>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2297,7 +2297,7 @@ public class ExtraOperationsApi {
         }
 
         com.squareup.okhttp.Call call = uploadMultipartFormValidateBeforeCall(file, contentType, filename, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<String>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

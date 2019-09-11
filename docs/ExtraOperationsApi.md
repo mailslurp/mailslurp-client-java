@@ -903,7 +903,7 @@ null (empty response body)
 
 <a name="uploadAttachment"></a>
 # **uploadAttachment**
-> String uploadAttachment(uploadAttachmentOptions)
+> List&lt;String&gt; uploadAttachment(uploadAttachmentOptions)
 
 Upload an attachment for sending
 
@@ -929,7 +929,7 @@ API_KEY.setApiKey("YOUR API KEY");
 ExtraOperationsApi apiInstance = new ExtraOperationsApi();
 UploadAttachmentOptions uploadAttachmentOptions = new UploadAttachmentOptions(); // UploadAttachmentOptions | uploadOptions
 try {
-    String result = apiInstance.uploadAttachment(uploadAttachmentOptions);
+    List<String> result = apiInstance.uploadAttachment(uploadAttachmentOptions);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ExtraOperationsApi#uploadAttachment");
@@ -945,7 +945,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**String**
+**List&lt;String&gt;**
 
 ### Authorization
 
@@ -958,7 +958,7 @@ Name | Type | Description  | Notes
 
 <a name="uploadMultipartForm"></a>
 # **uploadMultipartForm**
-> String uploadMultipartForm(file, contentType, filename)
+> List&lt;String&gt; uploadMultipartForm(file, contentType, filename)
 
 Upload an attachment for sending using Multipart Form
 
@@ -986,7 +986,7 @@ File file = new File("/path/to/file"); // File | file
 String contentType = "contentType_example"; // String | contentType
 String filename = "filename_example"; // String | filename
 try {
-    String result = apiInstance.uploadMultipartForm(file, contentType, filename);
+    List<String> result = apiInstance.uploadMultipartForm(file, contentType, filename);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ExtraOperationsApi#uploadMultipartForm");
@@ -1004,7 +1004,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-**String**
+**List&lt;String&gt;**
 
 ### Authorization
 
