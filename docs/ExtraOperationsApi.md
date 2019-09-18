@@ -13,6 +13,7 @@ Method | HTTP request | Description
 [**deleteInbox**](ExtraOperationsApi.md#deleteInbox) | **DELETE** /inboxes/{inboxId} | Delete Inbox / Email Address
 [**deleteWebhook**](ExtraOperationsApi.md#deleteWebhook) | **DELETE** /inboxes/{inboxId}/webhooks/{webhookId} | Delete and disable a WebHook for an Inbox
 [**downloadAttachment**](ExtraOperationsApi.md#downloadAttachment) | **GET** /emails/{emailId}/attachments/{attachmentId} | Get email attachment
+[**forwardEmail**](ExtraOperationsApi.md#forwardEmail) | **POST** /emails/{emailId}/forward | Forward Email
 [**getEmail**](ExtraOperationsApi.md#getEmail) | **GET** /emails/{emailId} | Get Email Content
 [**getEmails**](ExtraOperationsApi.md#getEmails) | **GET** /inboxes/{inboxId}/emails | List Emails in an Inbox / EmailAddress
 [**getInbox**](ExtraOperationsApi.md#getInbox) | **GET** /inboxes/{inboxId} | Get Inbox / EmailAddress
@@ -511,6 +512,62 @@ null (empty response body)
 ### HTTP request headers
 
  - **Content-Type**: Not defined
+ - **Accept**: Not defined
+
+<a name="forwardEmail"></a>
+# **forwardEmail**
+> forwardEmail(emailId, forwardEmailOptions)
+
+Forward Email
+
+Forward email content to given recipients
+
+### Example
+```java
+// Import classes:
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: API_KEY
+ApiKeyAuth API_KEY = (ApiKeyAuth) defaultClient.getAuthentication("API_KEY");
+API_KEY.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//API_KEY.setApiKeyPrefix("Token");
+
+ExtraOperationsApi apiInstance = new ExtraOperationsApi();
+UUID emailId = new UUID(); // UUID | emailId
+ForwardEmailOptions forwardEmailOptions = new ForwardEmailOptions(); // ForwardEmailOptions | forwardEmailOptions
+try {
+    apiInstance.forwardEmail(emailId, forwardEmailOptions);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ExtraOperationsApi#forwardEmail");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **emailId** | [**UUID**](.md)| emailId |
+ **forwardEmailOptions** | [**ForwardEmailOptions**](ForwardEmailOptions.md)| forwardEmailOptions |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[API_KEY](../README.md#API_KEY)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
  - **Accept**: Not defined
 
 <a name="getEmail"></a>

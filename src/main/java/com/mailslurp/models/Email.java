@@ -35,7 +35,7 @@ import org.threeten.bp.OffsetDateTime;
  * Representation of an email
  */
 @ApiModel(description = "Representation of an email")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-11T16:11:05.338+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-18T17:35:42.599+02:00[Europe/Berlin]")
 public class Email {
   public static final String SERIALIZED_NAME_ANALYSIS = "analysis";
   @SerializedName(SERIALIZED_NAME_ANALYSIS)
@@ -57,6 +57,10 @@ public class Email {
   @SerializedName(SERIALIZED_NAME_CC)
   private List<String> cc = null;
 
+  public static final String SERIALIZED_NAME_CHARSET = "charset";
+  @SerializedName(SERIALIZED_NAME_CHARSET)
+  private String charset;
+
   public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   private OffsetDateTime createdAt;
@@ -68,6 +72,10 @@ public class Email {
   public static final String SERIALIZED_NAME_HEADERS = "headers";
   @SerializedName(SERIALIZED_NAME_HEADERS)
   private Map<String, String> headers = null;
+
+  public static final String SERIALIZED_NAME_HTML = "html";
+  @SerializedName(SERIALIZED_NAME_HTML)
+  private Boolean html;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
@@ -211,6 +219,24 @@ public class Email {
     this.cc = cc;
   }
 
+  public Email charset(String charset) {
+    this.charset = charset;
+    return this;
+  }
+
+   /**
+   * Get charset
+   * @return charset
+  **/
+  @ApiModelProperty(value = "")
+  public String getCharset() {
+    return charset;
+  }
+
+  public void setCharset(String charset) {
+    this.charset = charset;
+  }
+
   public Email createdAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
@@ -271,6 +297,24 @@ public class Email {
 
   public void setHeaders(Map<String, String> headers) {
     this.headers = headers;
+  }
+
+  public Email html(Boolean html) {
+    this.html = html;
+    return this;
+  }
+
+   /**
+   * Get html
+   * @return html
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getHtml() {
+    return html;
+  }
+
+  public void setHtml(Boolean html) {
+    this.html = html;
   }
 
   public Email id(UUID id) {
@@ -419,9 +463,11 @@ public class Email {
         Objects.equals(this.bcc, email.bcc) &&
         Objects.equals(this.body, email.body) &&
         Objects.equals(this.cc, email.cc) &&
+        Objects.equals(this.charset, email.charset) &&
         Objects.equals(this.createdAt, email.createdAt) &&
         Objects.equals(this.from, email.from) &&
         Objects.equals(this.headers, email.headers) &&
+        Objects.equals(this.html, email.html) &&
         Objects.equals(this.id, email.id) &&
         Objects.equals(this.inboxId, email.inboxId) &&
         Objects.equals(this.rawUrl, email.rawUrl) &&
@@ -433,7 +479,7 @@ public class Email {
 
   @Override
   public int hashCode() {
-    return Objects.hash(analysis, attachments, bcc, body, cc, createdAt, from, headers, id, inboxId, rawUrl, subject, to, updatedAt, userId);
+    return Objects.hash(analysis, attachments, bcc, body, cc, charset, createdAt, from, headers, html, id, inboxId, rawUrl, subject, to, updatedAt, userId);
   }
 
 
@@ -447,9 +493,11 @@ public class Email {
     sb.append("    bcc: ").append(toIndentedString(bcc)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    cc: ").append(toIndentedString(cc)).append("\n");
+    sb.append("    charset: ").append(toIndentedString(charset)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    from: ").append(toIndentedString(from)).append("\n");
     sb.append("    headers: ").append(toIndentedString(headers)).append("\n");
+    sb.append("    html: ").append(toIndentedString(html)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    inboxId: ").append(toIndentedString(inboxId)).append("\n");
     sb.append("    rawUrl: ").append(toIndentedString(rawUrl)).append("\n");

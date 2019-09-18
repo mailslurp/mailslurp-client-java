@@ -9,9 +9,11 @@ Name | Type | Description | Notes
 **bcc** | **List&lt;String&gt;** |  |  [optional]
 **body** | **String** |  |  [optional]
 **cc** | **List&lt;String&gt;** |  |  [optional]
+**charset** | **String** |  |  [optional]
 **createdAt** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
 **from** | **String** |  |  [optional]
 **headers** | **Map&lt;String, String&gt;** |  |  [optional]
+**html** | **Boolean** |  |  [optional]
 **id** | [**UUID**](UUID.md) |  | 
 **inboxId** | [**UUID**](UUID.md) |  | 
 **rawUrl** | **String** |  |  [optional]

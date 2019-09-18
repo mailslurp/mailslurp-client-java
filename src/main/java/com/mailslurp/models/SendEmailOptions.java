@@ -30,7 +30,7 @@ import java.util.List;
  * Options for sending an email message from an inbox
  */
 @ApiModel(description = "Options for sending an email message from an inbox")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-11T16:11:05.338+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-18T17:35:42.599+02:00[Europe/Berlin]")
 public class SendEmailOptions {
   public static final String SERIALIZED_NAME_ATTACHMENTS = "attachments";
   @SerializedName(SERIALIZED_NAME_ATTACHMENTS)
@@ -68,6 +68,10 @@ public class SendEmailOptions {
   @SerializedName(SERIALIZED_NAME_SUBJECT)
   private String subject;
 
+  public static final String SERIALIZED_NAME_TEMPLATE_VARIABLES = "templateVariables";
+  @SerializedName(SERIALIZED_NAME_TEMPLATE_VARIABLES)
+  private Object templateVariables = null;
+
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
   private List<String> to = new ArrayList<String>();
@@ -86,10 +90,10 @@ public class SendEmailOptions {
   }
 
    /**
-   * Optional list of attachment IDs to send with this email
+   * Optional list of attachment IDs to send with this email. You must first upload each attachment separately in order to obtain attachment IDs
    * @return attachments
   **/
-  @ApiModelProperty(value = "Optional list of attachment IDs to send with this email")
+  @ApiModelProperty(value = "Optional list of attachment IDs to send with this email. You must first upload each attachment separately in order to obtain attachment IDs")
   public List<String> getAttachments() {
     return attachments;
   }
@@ -130,10 +134,10 @@ public class SendEmailOptions {
   }
 
    /**
-   * Contents of email
+   * Contents of email. If HTML set isHTML to true. You can use moustache templates here if you provide a templateVariables option
    * @return body
   **/
-  @ApiModelProperty(value = "Contents of email")
+  @ApiModelProperty(value = "Contents of email. If HTML set isHTML to true. You can use moustache templates here if you provide a templateVariables option")
   public String getBody() {
     return body;
   }
@@ -258,6 +262,24 @@ public class SendEmailOptions {
     this.subject = subject;
   }
 
+  public SendEmailOptions templateVariables(Object templateVariables) {
+    this.templateVariables = templateVariables;
+    return this;
+  }
+
+   /**
+   * Optional map of template variables. Will replace moustache syntax variables in subject or body with the associated values
+   * @return templateVariables
+  **/
+  @ApiModelProperty(value = "Optional map of template variables. Will replace moustache syntax variables in subject or body with the associated values")
+  public Object getTemplateVariables() {
+    return templateVariables;
+  }
+
+  public void setTemplateVariables(Object templateVariables) {
+    this.templateVariables = templateVariables;
+  }
+
   public SendEmailOptions to(List<String> to) {
     this.to = to;
     return this;
@@ -300,12 +322,13 @@ public class SendEmailOptions {
         Objects.equals(this.html, sendEmailOptions.html) &&
         Objects.equals(this.replyTo, sendEmailOptions.replyTo) &&
         Objects.equals(this.subject, sendEmailOptions.subject) &&
+        Objects.equals(this.templateVariables, sendEmailOptions.templateVariables) &&
         Objects.equals(this.to, sendEmailOptions.to);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(attachments, bcc, body, cc, charset, from, html, replyTo, subject, to);
+    return Objects.hash(attachments, bcc, body, cc, charset, from, html, replyTo, subject, templateVariables, to);
   }
 
 
@@ -323,6 +346,7 @@ public class SendEmailOptions {
     sb.append("    html: ").append(toIndentedString(html)).append("\n");
     sb.append("    replyTo: ").append(toIndentedString(replyTo)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
+    sb.append("    templateVariables: ").append(toIndentedString(templateVariables)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");
     sb.append("}");
     return sb.toString();
