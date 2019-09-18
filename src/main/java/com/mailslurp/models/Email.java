@@ -35,7 +35,7 @@ import org.threeten.bp.OffsetDateTime;
  * Representation of an email
  */
 @ApiModel(description = "Representation of an email")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-18T17:35:42.599+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-18T17:39:24.183+02:00[Europe/Berlin]")
 public class Email {
   public static final String SERIALIZED_NAME_ANALYSIS = "analysis";
   @SerializedName(SERIALIZED_NAME_ANALYSIS)
