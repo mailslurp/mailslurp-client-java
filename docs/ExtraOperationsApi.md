@@ -7,13 +7,17 @@ Method | HTTP request | Description
 [**bulkCreateInboxes**](ExtraOperationsApi.md#bulkCreateInboxes) | **POST** /bulk/inboxes | Bulk create Inboxes (email addresses)
 [**bulkDeleteInboxes**](ExtraOperationsApi.md#bulkDeleteInboxes) | **DELETE** /bulk/inboxes | Bulk Delete Inboxes
 [**bulkSendEmails**](ExtraOperationsApi.md#bulkSendEmails) | **POST** /bulk/send | Bulk Send Emails
+[**createDomain**](ExtraOperationsApi.md#createDomain) | **POST** /domains | Create Domain
 [**createInbox**](ExtraOperationsApi.md#createInbox) | **POST** /inboxes | Create an Inbox (email address)
 [**createWebhook**](ExtraOperationsApi.md#createWebhook) | **POST** /inboxes/{inboxId}/webhooks | Attach a WebHook URL to an inbox
+[**deleteDomain**](ExtraOperationsApi.md#deleteDomain) | **DELETE** /domains/{id} | Delete a domain
 [**deleteEmail1**](ExtraOperationsApi.md#deleteEmail1) | **DELETE** /emails/{emailId} | Delete Email
 [**deleteInbox**](ExtraOperationsApi.md#deleteInbox) | **DELETE** /inboxes/{inboxId} | Delete Inbox / Email Address
 [**deleteWebhook**](ExtraOperationsApi.md#deleteWebhook) | **DELETE** /inboxes/{inboxId}/webhooks/{webhookId} | Delete and disable a WebHook for an Inbox
 [**downloadAttachment**](ExtraOperationsApi.md#downloadAttachment) | **GET** /emails/{emailId}/attachments/{attachmentId} | Get email attachment
 [**forwardEmail**](ExtraOperationsApi.md#forwardEmail) | **POST** /emails/{emailId}/forward | Forward Email
+[**getDomain**](ExtraOperationsApi.md#getDomain) | **GET** /domains/{id} | Get a domain
+[**getDomains**](ExtraOperationsApi.md#getDomains) | **GET** /domains | Get domains
 [**getEmail**](ExtraOperationsApi.md#getEmail) | **GET** /emails/{emailId} | Get Email Content
 [**getEmails**](ExtraOperationsApi.md#getEmails) | **GET** /inboxes/{inboxId}/emails | List Emails in an Inbox / EmailAddress
 [**getInbox**](ExtraOperationsApi.md#getInbox) | **GET** /inboxes/{inboxId} | Get Inbox / EmailAddress
@@ -188,13 +192,13 @@ null (empty response body)
  - **Content-Type**: application/json
  - **Accept**: Not defined
 
-<a name="createInbox"></a>
-# **createInbox**
-> Inbox createInbox()
+<a name="createDomain"></a>
+# **createDomain**
+> DomainPlusVerificationRecordsAndStatus createDomain(createDomainOptions)
 
-Create an Inbox (email address)
+Create Domain
 
-Create a new inbox and ephemeral email address to send and receive from. This is a necessary step before sending or receiving emails. The response contains the inbox&#39;s ID and its associated email address. It is recommended that you create a new inbox during each test method so that it is unique and empty
+Link a domain that you own with MailSlurp so you can create inboxes with it. Returns DNS records used for validation. You must add these verification records to your host provider&#39;s DNS setup to verify the domain.
 
 ### Example
 ```java
@@ -214,8 +218,64 @@ API_KEY.setApiKey("YOUR API KEY");
 //API_KEY.setApiKeyPrefix("Token");
 
 ExtraOperationsApi apiInstance = new ExtraOperationsApi();
+CreateDomainOptions createDomainOptions = new CreateDomainOptions(); // CreateDomainOptions | domainOptions
 try {
-    Inbox result = apiInstance.createInbox();
+    DomainPlusVerificationRecordsAndStatus result = apiInstance.createDomain(createDomainOptions);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ExtraOperationsApi#createDomain");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **createDomainOptions** | [**CreateDomainOptions**](CreateDomainOptions.md)| domainOptions |
+
+### Return type
+
+[**DomainPlusVerificationRecordsAndStatus**](DomainPlusVerificationRecordsAndStatus.md)
+
+### Authorization
+
+[API_KEY](../README.md#API_KEY)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="createInbox"></a>
+# **createInbox**
+> Inbox createInbox(emailAddress)
+
+Create an Inbox (email address)
+
+Create a new inbox and with a ranmdomized email address to send and receive from. Pass emailAddress parameter if you wish to use a specific email address. Creating an inbox is required before sending or receiving emails. If writing tests it is recommended that you create a new inbox during each test method so that it is unique and empty. 
+
+### Example
+```java
+// Import classes:
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: API_KEY
+ApiKeyAuth API_KEY = (ApiKeyAuth) defaultClient.getAuthentication("API_KEY");
+API_KEY.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//API_KEY.setApiKeyPrefix("Token");
+
+ExtraOperationsApi apiInstance = new ExtraOperationsApi();
+String emailAddress = "emailAddress_example"; // String | Optional email address including domain you wish inbox to use (eg: test123@mydomain.com). Only supports domains that you have registered and verified with MailSlurp using dashboard or `createDomain` method.
+try {
+    Inbox result = apiInstance.createInbox(emailAddress);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling ExtraOperationsApi#createInbox");
@@ -224,7 +284,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **emailAddress** | **String**| Optional email address including domain you wish inbox to use (eg: test123@mydomain.com). Only supports domains that you have registered and verified with MailSlurp using dashboard or &#x60;createDomain&#x60; method. | [optional]
 
 ### Return type
 
@@ -295,6 +358,58 @@ Name | Type | Description  | Notes
 
  - **Content-Type**: application/json
  - **Accept**: application/json
+
+<a name="deleteDomain"></a>
+# **deleteDomain**
+> deleteDomain(id)
+
+Delete a domain
+
+### Example
+```java
+// Import classes:
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: API_KEY
+ApiKeyAuth API_KEY = (ApiKeyAuth) defaultClient.getAuthentication("API_KEY");
+API_KEY.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//API_KEY.setApiKeyPrefix("Token");
+
+ExtraOperationsApi apiInstance = new ExtraOperationsApi();
+UUID id = new UUID(); // UUID | id
+try {
+    apiInstance.deleteDomain(id);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ExtraOperationsApi#deleteDomain");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**UUID**](.md)| id |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[API_KEY](../README.md#API_KEY)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: Not defined
 
 <a name="deleteEmail1"></a>
 # **deleteEmail1**
@@ -569,6 +684,110 @@ null (empty response body)
 
  - **Content-Type**: application/json
  - **Accept**: Not defined
+
+<a name="getDomain"></a>
+# **getDomain**
+> DomainPlusVerificationRecordsAndStatus getDomain(id)
+
+Get a domain
+
+Returns domain verification status and tokens
+
+### Example
+```java
+// Import classes:
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: API_KEY
+ApiKeyAuth API_KEY = (ApiKeyAuth) defaultClient.getAuthentication("API_KEY");
+API_KEY.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//API_KEY.setApiKeyPrefix("Token");
+
+ExtraOperationsApi apiInstance = new ExtraOperationsApi();
+UUID id = new UUID(); // UUID | id
+try {
+    DomainPlusVerificationRecordsAndStatus result = apiInstance.getDomain(id);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ExtraOperationsApi#getDomain");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **id** | [**UUID**](.md)| id |
+
+### Return type
+
+[**DomainPlusVerificationRecordsAndStatus**](DomainPlusVerificationRecordsAndStatus.md)
+
+### Authorization
+
+[API_KEY](../README.md#API_KEY)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+<a name="getDomains"></a>
+# **getDomains**
+> List&lt;DomainPreview&gt; getDomains()
+
+Get domains
+
+### Example
+```java
+// Import classes:
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: API_KEY
+ApiKeyAuth API_KEY = (ApiKeyAuth) defaultClient.getAuthentication("API_KEY");
+API_KEY.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//API_KEY.setApiKeyPrefix("Token");
+
+ExtraOperationsApi apiInstance = new ExtraOperationsApi();
+try {
+    List<DomainPreview> result = apiInstance.getDomains();
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ExtraOperationsApi#getDomains");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List&lt;DomainPreview&gt;**](DomainPreview.md)
+
+### Authorization
+
+[API_KEY](../README.md#API_KEY)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
 
 <a name="getEmail"></a>
 # **getEmail**

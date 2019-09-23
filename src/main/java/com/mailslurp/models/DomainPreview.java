@@ -23,54 +23,56 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.UUID;
 
 /**
- * BasicAuthOptions
+ * Preview object for domain entity
  */
+@ApiModel(description = "Preview object for domain entity")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-23T11:36:29.853+02:00[Europe/Berlin]")
-public class BasicAuthOptions {
-  public static final String SERIALIZED_NAME_USERNAME = "username";
-  @SerializedName(SERIALIZED_NAME_USERNAME)
-  private String username;
+public class DomainPreview {
+  public static final String SERIALIZED_NAME_DOMAIN = "domain";
+  @SerializedName(SERIALIZED_NAME_DOMAIN)
+  private String domain;
 
-  public static final String SERIALIZED_NAME_PASSWORD = "password";
-  @SerializedName(SERIALIZED_NAME_PASSWORD)
-  private String password;
+  public static final String SERIALIZED_NAME_ID = "id";
+  @SerializedName(SERIALIZED_NAME_ID)
+  private UUID id;
 
-  public BasicAuthOptions username(String username) {
-    this.username = username;
+  public DomainPreview domain(String domain) {
+    this.domain = domain;
     return this;
   }
 
    /**
-   * Get username
-   * @return username
+   * Get domain
+   * @return domain
   **/
   @ApiModelProperty(required = true, value = "")
-  public String getUsername() {
-    return username;
+  public String getDomain() {
+    return domain;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
+  public void setDomain(String domain) {
+    this.domain = domain;
   }
 
-  public BasicAuthOptions password(String password) {
-    this.password = password;
+  public DomainPreview id(UUID id) {
+    this.id = id;
     return this;
   }
 
    /**
-   * Get password
-   * @return password
+   * Get id
+   * @return id
   **/
   @ApiModelProperty(required = true, value = "")
-  public String getPassword() {
-    return password;
+  public UUID getId() {
+    return id;
   }
 
-  public void setPassword(String password) {
-    this.password = password;
+  public void setId(UUID id) {
+    this.id = id;
   }
 
 
@@ -82,24 +84,24 @@ public class BasicAuthOptions {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    BasicAuthOptions basicAuthOptions = (BasicAuthOptions) o;
-    return Objects.equals(this.username, basicAuthOptions.username) &&
-        Objects.equals(this.password, basicAuthOptions.password);
+    DomainPreview domainPreview = (DomainPreview) o;
+    return Objects.equals(this.domain, domainPreview.domain) &&
+        Objects.equals(this.id, domainPreview.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, password);
+    return Objects.hash(domain, id);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class BasicAuthOptions {\n");
+    sb.append("class DomainPreview {\n");
     
-    sb.append("    username: ").append(toIndentedString(username)).append("\n");
-    sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
     return sb.toString();
   }

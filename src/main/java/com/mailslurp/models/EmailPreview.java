@@ -29,10 +29,10 @@ import java.util.UUID;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * Preview of an email message. For full message call the message endpoint with a given message id.
+ * Preview of an email message. For full message call the email endpoints with the provided email id.
  */
-@ApiModel(description = "Preview of an email message. For full message call the message endpoint with a given message id.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-18T17:39:24.183+02:00[Europe/Berlin]")
+@ApiModel(description = "Preview of an email message. For full message call the email endpoints with the provided email id.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-23T11:36:29.853+02:00[Europe/Berlin]")
 public class EmailPreview {
   public static final String SERIALIZED_NAME_BCC = "bcc";
   @SerializedName(SERIALIZED_NAME_BCC)
@@ -134,10 +134,10 @@ public class EmailPreview {
   }
 
    /**
-   * Get id
+   * ID of the Email.
    * @return id
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(value = "ID of the Email.")
   public UUID getId() {
     return id;
   }

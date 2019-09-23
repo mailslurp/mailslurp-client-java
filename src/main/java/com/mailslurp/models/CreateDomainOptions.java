@@ -25,52 +25,31 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * BasicAuthOptions
+ * Options for creating a domain to use with MailSlurp. You must have ownership access to this domain in order to verify it.
  */
+@ApiModel(description = "Options for creating a domain to use with MailSlurp. You must have ownership access to this domain in order to verify it.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-23T11:36:29.853+02:00[Europe/Berlin]")
-public class BasicAuthOptions {
-  public static final String SERIALIZED_NAME_USERNAME = "username";
-  @SerializedName(SERIALIZED_NAME_USERNAME)
-  private String username;
+public class CreateDomainOptions {
+  public static final String SERIALIZED_NAME_DOMAIN = "domain";
+  @SerializedName(SERIALIZED_NAME_DOMAIN)
+  private String domain;
 
-  public static final String SERIALIZED_NAME_PASSWORD = "password";
-  @SerializedName(SERIALIZED_NAME_PASSWORD)
-  private String password;
-
-  public BasicAuthOptions username(String username) {
-    this.username = username;
+  public CreateDomainOptions domain(String domain) {
+    this.domain = domain;
     return this;
   }
 
    /**
-   * Get username
-   * @return username
+   * The top level domain you wish to use with MailSlurp
+   * @return domain
   **/
-  @ApiModelProperty(required = true, value = "")
-  public String getUsername() {
-    return username;
+  @ApiModelProperty(value = "The top level domain you wish to use with MailSlurp")
+  public String getDomain() {
+    return domain;
   }
 
-  public void setUsername(String username) {
-    this.username = username;
-  }
-
-  public BasicAuthOptions password(String password) {
-    this.password = password;
-    return this;
-  }
-
-   /**
-   * Get password
-   * @return password
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public String getPassword() {
-    return password;
-  }
-
-  public void setPassword(String password) {
-    this.password = password;
+  public void setDomain(String domain) {
+    this.domain = domain;
   }
 
 
@@ -82,24 +61,22 @@ public class BasicAuthOptions {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    BasicAuthOptions basicAuthOptions = (BasicAuthOptions) o;
-    return Objects.equals(this.username, basicAuthOptions.username) &&
-        Objects.equals(this.password, basicAuthOptions.password);
+    CreateDomainOptions createDomainOptions = (CreateDomainOptions) o;
+    return Objects.equals(this.domain, createDomainOptions.domain);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(username, password);
+    return Objects.hash(domain);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class BasicAuthOptions {\n");
+    sb.append("class CreateDomainOptions {\n");
     
-    sb.append("    username: ").append(toIndentedString(username)).append("\n");
-    sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
     sb.append("}");
     return sb.toString();
   }
