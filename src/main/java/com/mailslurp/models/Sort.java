@@ -25,31 +25,52 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Options for creating a domain to use with MailSlurp. You must have ownership access to this domain in order to verify it.
+ * Sort
  */
-@ApiModel(description = "Options for creating a domain to use with MailSlurp. You must have ownership access to this domain in order to verify it.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-29T20:55:35.418+02:00[Europe/Berlin]")
-public class CreateDomainOptions {
-  public static final String SERIALIZED_NAME_DOMAIN = "domain";
-  @SerializedName(SERIALIZED_NAME_DOMAIN)
-  private String domain;
+public class Sort {
+  public static final String SERIALIZED_NAME_SORTED = "sorted";
+  @SerializedName(SERIALIZED_NAME_SORTED)
+  private Boolean sorted;
 
-  public CreateDomainOptions domain(String domain) {
-    this.domain = domain;
+  public static final String SERIALIZED_NAME_UNSORTED = "unsorted";
+  @SerializedName(SERIALIZED_NAME_UNSORTED)
+  private Boolean unsorted;
+
+  public Sort sorted(Boolean sorted) {
+    this.sorted = sorted;
     return this;
   }
 
    /**
-   * The top level domain you wish to use with MailSlurp
-   * @return domain
+   * Get sorted
+   * @return sorted
   **/
-  @ApiModelProperty(value = "The top level domain you wish to use with MailSlurp")
-  public String getDomain() {
-    return domain;
+  @ApiModelProperty(value = "")
+  public Boolean getSorted() {
+    return sorted;
   }
 
-  public void setDomain(String domain) {
-    this.domain = domain;
+  public void setSorted(Boolean sorted) {
+    this.sorted = sorted;
+  }
+
+  public Sort unsorted(Boolean unsorted) {
+    this.unsorted = unsorted;
+    return this;
+  }
+
+   /**
+   * Get unsorted
+   * @return unsorted
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean getUnsorted() {
+    return unsorted;
+  }
+
+  public void setUnsorted(Boolean unsorted) {
+    this.unsorted = unsorted;
   }
 
 
@@ -61,22 +82,24 @@ public class CreateDomainOptions {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    CreateDomainOptions createDomainOptions = (CreateDomainOptions) o;
-    return Objects.equals(this.domain, createDomainOptions.domain);
+    Sort sort = (Sort) o;
+    return Objects.equals(this.sorted, sort.sorted) &&
+        Objects.equals(this.unsorted, sort.unsorted);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(domain);
+    return Objects.hash(sorted, unsorted);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class CreateDomainOptions {\n");
+    sb.append("class Sort {\n");
     
-    sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
+    sb.append("    sorted: ").append(toIndentedString(sorted)).append("\n");
+    sb.append("    unsorted: ").append(toIndentedString(unsorted)).append("\n");
     sb.append("}");
     return sb.toString();
   }

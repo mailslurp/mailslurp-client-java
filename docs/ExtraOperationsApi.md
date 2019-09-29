@@ -20,6 +20,7 @@ Method | HTTP request | Description
 [**getDomains**](ExtraOperationsApi.md#getDomains) | **GET** /domains | Get domains
 [**getEmail**](ExtraOperationsApi.md#getEmail) | **GET** /emails/{emailId} | Get Email Content
 [**getEmails**](ExtraOperationsApi.md#getEmails) | **GET** /inboxes/{inboxId}/emails | List Emails in an Inbox / EmailAddress
+[**getEmailsPaginated**](ExtraOperationsApi.md#getEmailsPaginated) | **GET** /emails | Get all emails
 [**getInbox**](ExtraOperationsApi.md#getInbox) | **GET** /inboxes/{inboxId} | Get Inbox / EmailAddress
 [**getInboxes**](ExtraOperationsApi.md#getInboxes) | **GET** /inboxes | List Inboxes / Email Addresses
 [**getRawEmailContents**](ExtraOperationsApi.md#getRawEmailContents) | **GET** /emails/{emailId}/raw | Get Raw Email Content
@@ -575,7 +576,7 @@ null (empty response body)
 
 <a name="downloadAttachment"></a>
 # **downloadAttachment**
-> downloadAttachment(attachmentId, emailId)
+> downloadAttachment(attachmentId, emailId, apiKey)
 
 Get email attachment
 
@@ -601,8 +602,9 @@ API_KEY.setApiKey("YOUR API KEY");
 ExtraOperationsApi apiInstance = new ExtraOperationsApi();
 String attachmentId = "attachmentId_example"; // String | attachmentId
 UUID emailId = new UUID(); // UUID | emailId
+String apiKey = "apiKey_example"; // String | Can pass apiKey in url for this request if you wish to download the file in a browser
 try {
-    apiInstance.downloadAttachment(attachmentId, emailId);
+    apiInstance.downloadAttachment(attachmentId, emailId, apiKey);
 } catch (ApiException e) {
     System.err.println("Exception when calling ExtraOperationsApi#downloadAttachment");
     e.printStackTrace();
@@ -615,6 +617,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **attachmentId** | **String**| attachmentId |
  **emailId** | [**UUID**](.md)| emailId |
+ **apiKey** | **String**| Can pass apiKey in url for this request if you wish to download the file in a browser | [optional]
 
 ### Return type
 
@@ -907,6 +910,63 @@ Name | Type | Description  | Notes
  - **Content-Type**: Not defined
  - **Accept**: application/json
 
+<a name="getEmailsPaginated"></a>
+# **getEmailsPaginated**
+> PageEmailProjection getEmailsPaginated(page, size)
+
+Get all emails
+
+Responses are paginated
+
+### Example
+```java
+// Import classes:
+//import com.mailslurp.client.ApiClient;
+//import com.mailslurp.client.ApiException;
+//import com.mailslurp.client.Configuration;
+//import com.mailslurp.client.auth.*;
+//import com.mailslurp.api.api.ExtraOperationsApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: API_KEY
+ApiKeyAuth API_KEY = (ApiKeyAuth) defaultClient.getAuthentication("API_KEY");
+API_KEY.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//API_KEY.setApiKeyPrefix("Token");
+
+ExtraOperationsApi apiInstance = new ExtraOperationsApi();
+Integer page = 0; // Integer | Optional page index in email list pagination
+Integer size = 20; // Integer | Optional page size in email list pagination
+try {
+    PageEmailProjection result = apiInstance.getEmailsPaginated(page, size);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling ExtraOperationsApi#getEmailsPaginated");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **page** | **Integer**| Optional page index in email list pagination | [optional] [default to 0]
+ **size** | **Integer**| Optional page size in email list pagination | [optional] [default to 20]
+
+### Return type
+
+[**PageEmailProjection**](PageEmailProjection.md)
+
+### Authorization
+
+[API_KEY](../README.md#API_KEY)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
 <a name="getInbox"></a>
 # **getInbox**
 > Inbox getInbox(inboxId)
@@ -1066,7 +1126,7 @@ Name | Type | Description  | Notes
 ### HTTP request headers
 
  - **Content-Type**: Not defined
- - **Accept**: application/json
+ - **Accept**: text/plain
 
 <a name="getWebhooks"></a>
 # **getWebhooks**

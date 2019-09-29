@@ -29,11 +29,10 @@ import java.util.UUID;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * Preview of an email message. For full message call the email endpoints with the provided email id.
+ * EmailProjection
  */
-@ApiModel(description = "Preview of an email message. For full message call the email endpoints with the provided email id.")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-29T20:55:35.418+02:00[Europe/Berlin]")
-public class EmailPreview {
+public class EmailProjection {
   public static final String SERIALIZED_NAME_BCC = "bcc";
   @SerializedName(SERIALIZED_NAME_BCC)
   private List<String> bcc = null;
@@ -41,10 +40,6 @@ public class EmailPreview {
   public static final String SERIALIZED_NAME_CC = "cc";
   @SerializedName(SERIALIZED_NAME_CC)
   private List<String> cc = null;
-
-  public static final String SERIALIZED_NAME_CREATED = "created";
-  @SerializedName(SERIALIZED_NAME_CREATED)
-  private OffsetDateTime created;
 
   public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
@@ -62,12 +57,12 @@ public class EmailPreview {
   @SerializedName(SERIALIZED_NAME_TO)
   private List<String> to = new ArrayList<String>();
 
-  public EmailPreview bcc(List<String> bcc) {
+  public EmailProjection bcc(List<String> bcc) {
     this.bcc = bcc;
     return this;
   }
 
-  public EmailPreview addBccItem(String bccItem) {
+  public EmailProjection addBccItem(String bccItem) {
     if (this.bcc == null) {
       this.bcc = new ArrayList<String>();
     }
@@ -88,12 +83,12 @@ public class EmailPreview {
     this.bcc = bcc;
   }
 
-  public EmailPreview cc(List<String> cc) {
+  public EmailProjection cc(List<String> cc) {
     this.cc = cc;
     return this;
   }
 
-  public EmailPreview addCcItem(String ccItem) {
+  public EmailProjection addCcItem(String ccItem) {
     if (this.cc == null) {
       this.cc = new ArrayList<String>();
     }
@@ -114,25 +109,7 @@ public class EmailPreview {
     this.cc = cc;
   }
 
-  public EmailPreview created(OffsetDateTime created) {
-    this.created = created;
-    return this;
-  }
-
-   /**
-   * Get created
-   * @return created
-  **/
-  @ApiModelProperty(required = true, value = "")
-  public OffsetDateTime getCreated() {
-    return created;
-  }
-
-  public void setCreated(OffsetDateTime created) {
-    this.created = created;
-  }
-
-  public EmailPreview createdAt(OffsetDateTime createdAt) {
+  public EmailProjection createdAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
     return this;
   }
@@ -150,16 +127,16 @@ public class EmailPreview {
     this.createdAt = createdAt;
   }
 
-  public EmailPreview id(UUID id) {
+  public EmailProjection id(UUID id) {
     this.id = id;
     return this;
   }
 
    /**
-   * ID of the Email.
+   * Get id
    * @return id
   **/
-  @ApiModelProperty(value = "ID of the Email.")
+  @ApiModelProperty(required = true, value = "")
   public UUID getId() {
     return id;
   }
@@ -168,7 +145,7 @@ public class EmailPreview {
     this.id = id;
   }
 
-  public EmailPreview subject(String subject) {
+  public EmailProjection subject(String subject) {
     this.subject = subject;
     return this;
   }
@@ -186,12 +163,12 @@ public class EmailPreview {
     this.subject = subject;
   }
 
-  public EmailPreview to(List<String> to) {
+  public EmailProjection to(List<String> to) {
     this.to = to;
     return this;
   }
 
-  public EmailPreview addToItem(String toItem) {
+  public EmailProjection addToItem(String toItem) {
     this.to.add(toItem);
     return this;
   }
@@ -218,30 +195,28 @@ public class EmailPreview {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    EmailPreview emailPreview = (EmailPreview) o;
-    return Objects.equals(this.bcc, emailPreview.bcc) &&
-        Objects.equals(this.cc, emailPreview.cc) &&
-        Objects.equals(this.created, emailPreview.created) &&
-        Objects.equals(this.createdAt, emailPreview.createdAt) &&
-        Objects.equals(this.id, emailPreview.id) &&
-        Objects.equals(this.subject, emailPreview.subject) &&
-        Objects.equals(this.to, emailPreview.to);
+    EmailProjection emailProjection = (EmailProjection) o;
+    return Objects.equals(this.bcc, emailProjection.bcc) &&
+        Objects.equals(this.cc, emailProjection.cc) &&
+        Objects.equals(this.createdAt, emailProjection.createdAt) &&
+        Objects.equals(this.id, emailProjection.id) &&
+        Objects.equals(this.subject, emailProjection.subject) &&
+        Objects.equals(this.to, emailProjection.to);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(bcc, cc, created, createdAt, id, subject, to);
+    return Objects.hash(bcc, cc, createdAt, id, subject, to);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class EmailPreview {\n");
+    sb.append("class EmailProjection {\n");
     
     sb.append("    bcc: ").append(toIndentedString(bcc)).append("\n");
     sb.append("    cc: ").append(toIndentedString(cc)).append("\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");

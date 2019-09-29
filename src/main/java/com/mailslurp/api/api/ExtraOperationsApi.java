@@ -38,6 +38,7 @@ import java.io.File;
 import com.mailslurp.models.ForwardEmailOptions;
 import com.mailslurp.models.Inbox;
 import org.threeten.bp.OffsetDateTime;
+import com.mailslurp.models.PageEmailProjection;
 import com.mailslurp.models.SendEmailOptions;
 import java.util.UUID;
 import com.mailslurp.models.UploadAttachmentOptions;
@@ -1285,12 +1286,13 @@ public class ExtraOperationsApi {
      * Build call for downloadAttachment
      * @param attachmentId attachmentId (required)
      * @param emailId emailId (required)
+     * @param apiKey Can pass apiKey in url for this request if you wish to download the file in a browser (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call downloadAttachmentCall(String attachmentId, UUID emailId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call downloadAttachmentCall(String attachmentId, UUID emailId, String apiKey, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = new Object();
 
         // create path and map variables
@@ -1300,6 +1302,10 @@ public class ExtraOperationsApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (apiKey != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("apiKey", apiKey));
+        }
+
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
@@ -1333,7 +1339,7 @@ public class ExtraOperationsApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call downloadAttachmentValidateBeforeCall(String attachmentId, UUID emailId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call downloadAttachmentValidateBeforeCall(String attachmentId, UUID emailId, String apiKey, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'attachmentId' is set
         if (attachmentId == null) {
@@ -1346,7 +1352,7 @@ public class ExtraOperationsApi {
         }
         
 
-        com.squareup.okhttp.Call call = downloadAttachmentCall(attachmentId, emailId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = downloadAttachmentCall(attachmentId, emailId, apiKey, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1356,10 +1362,11 @@ public class ExtraOperationsApi {
      * Returns the specified attachment for a given email as a byte stream (file download). Get the attachmentId from the email response. Requires enterprise account.
      * @param attachmentId attachmentId (required)
      * @param emailId emailId (required)
+     * @param apiKey Can pass apiKey in url for this request if you wish to download the file in a browser (optional)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void downloadAttachment(String attachmentId, UUID emailId) throws ApiException {
-        downloadAttachmentWithHttpInfo(attachmentId, emailId);
+    public void downloadAttachment(String attachmentId, UUID emailId, String apiKey) throws ApiException {
+        downloadAttachmentWithHttpInfo(attachmentId, emailId, apiKey);
     }
 
     /**
@@ -1367,11 +1374,12 @@ public class ExtraOperationsApi {
      * Returns the specified attachment for a given email as a byte stream (file download). Get the attachmentId from the email response. Requires enterprise account.
      * @param attachmentId attachmentId (required)
      * @param emailId emailId (required)
+     * @param apiKey Can pass apiKey in url for this request if you wish to download the file in a browser (optional)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> downloadAttachmentWithHttpInfo(String attachmentId, UUID emailId) throws ApiException {
-        com.squareup.okhttp.Call call = downloadAttachmentValidateBeforeCall(attachmentId, emailId, null, null);
+    public ApiResponse<Void> downloadAttachmentWithHttpInfo(String attachmentId, UUID emailId, String apiKey) throws ApiException {
+        com.squareup.okhttp.Call call = downloadAttachmentValidateBeforeCall(attachmentId, emailId, apiKey, null, null);
         return apiClient.execute(call);
     }
 
@@ -1380,11 +1388,12 @@ public class ExtraOperationsApi {
      * Returns the specified attachment for a given email as a byte stream (file download). Get the attachmentId from the email response. Requires enterprise account.
      * @param attachmentId attachmentId (required)
      * @param emailId emailId (required)
+     * @param apiKey Can pass apiKey in url for this request if you wish to download the file in a browser (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call downloadAttachmentAsync(String attachmentId, UUID emailId, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call downloadAttachmentAsync(String attachmentId, UUID emailId, String apiKey, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1405,7 +1414,7 @@ public class ExtraOperationsApi {
             };
         }
 
-        com.squareup.okhttp.Call call = downloadAttachmentValidateBeforeCall(attachmentId, emailId, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = downloadAttachmentValidateBeforeCall(attachmentId, emailId, apiKey, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
@@ -2047,6 +2056,134 @@ public class ExtraOperationsApi {
         return call;
     }
     /**
+     * Build call for getEmailsPaginated
+     * @param page Optional page index in email list pagination (optional, default to 0)
+     * @param size Optional page size in email list pagination (optional, default to 20)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call getEmailsPaginatedCall(Integer page, Integer size, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = new Object();
+
+        // create path and map variables
+        String localVarPath = "/emails";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (page != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        }
+
+        if (size != null) {
+            localVarQueryParams.addAll(apiClient.parameterToPair("size", size));
+        }
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) {
+            localVarHeaderParams.put("Accept", localVarAccept);
+        }
+
+        final String[] localVarContentTypes = {
+            
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if (progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "API_KEY" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call getEmailsPaginatedValidateBeforeCall(Integer page, Integer size, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+
+        com.squareup.okhttp.Call call = getEmailsPaginatedCall(page, size, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get all emails
+     * Responses are paginated
+     * @param page Optional page index in email list pagination (optional, default to 0)
+     * @param size Optional page size in email list pagination (optional, default to 20)
+     * @return PageEmailProjection
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public PageEmailProjection getEmailsPaginated(Integer page, Integer size) throws ApiException {
+        ApiResponse<PageEmailProjection> resp = getEmailsPaginatedWithHttpInfo(page, size);
+        return resp.getData();
+    }
+
+    /**
+     * Get all emails
+     * Responses are paginated
+     * @param page Optional page index in email list pagination (optional, default to 0)
+     * @param size Optional page size in email list pagination (optional, default to 20)
+     * @return ApiResponse&lt;PageEmailProjection&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<PageEmailProjection> getEmailsPaginatedWithHttpInfo(Integer page, Integer size) throws ApiException {
+        com.squareup.okhttp.Call call = getEmailsPaginatedValidateBeforeCall(page, size, null, null);
+        Type localVarReturnType = new TypeToken<PageEmailProjection>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get all emails (asynchronously)
+     * Responses are paginated
+     * @param page Optional page index in email list pagination (optional, default to 0)
+     * @param size Optional page size in email list pagination (optional, default to 20)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call getEmailsPaginatedAsync(Integer page, Integer size, final ApiCallback<PageEmailProjection> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = getEmailsPaginatedValidateBeforeCall(page, size, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<PageEmailProjection>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for getInbox
      * @param inboxId inboxId (required)
      * @param progressListener Progress listener
@@ -2300,7 +2437,7 @@ public class ExtraOperationsApi {
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
         Map<String, Object> localVarFormParams = new HashMap<String, Object>();
         final String[] localVarAccepts = {
-            "application/json"
+            "text/plain"
         };
         final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
         if (localVarAccept != null) {

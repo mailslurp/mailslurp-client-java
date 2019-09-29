@@ -1,12 +1,15 @@
 
-# DomainPreview
+# EmailProjection
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**bcc** | **List&lt;String&gt;** |  |  [optional]
+**cc** | **List&lt;String&gt;** |  |  [optional]
 **createdAt** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
-**domain** | **String** |  | 
 **id** | [**UUID**](UUID.md) |  | 
+**subject** | **String** |  |  [optional]
+**to** | **List&lt;String&gt;** |  | 
 
 
 

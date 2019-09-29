@@ -28,7 +28,7 @@ import java.io.IOException;
  * Analysis of email
  */
 @ApiModel(description = "Analysis of email")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-23T11:36:29.853+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-29T20:55:35.418+02:00[Europe/Berlin]")
 public class EmailAnalysis {
   public static final String SERIALIZED_NAME_DKIM_VERDICT = "dkimVerdict";
   @SerializedName(SERIALIZED_NAME_DKIM_VERDICT)
@@ -59,7 +59,7 @@ public class EmailAnalysis {
    * Get dkimVerdict
    * @return dkimVerdict
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(value = "")
   public String getDkimVerdict() {
     return dkimVerdict;
   }
@@ -77,7 +77,7 @@ public class EmailAnalysis {
    * Get dmarcVerdict
    * @return dmarcVerdict
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(value = "")
   public String getDmarcVerdict() {
     return dmarcVerdict;
   }
@@ -95,7 +95,7 @@ public class EmailAnalysis {
    * Get spamVerdict
    * @return spamVerdict
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(value = "")
   public String getSpamVerdict() {
     return spamVerdict;
   }
@@ -113,7 +113,7 @@ public class EmailAnalysis {
    * Get spfVerdict
    * @return spfVerdict
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(value = "")
   public String getSpfVerdict() {
     return spfVerdict;
   }
@@ -131,7 +131,7 @@ public class EmailAnalysis {
    * Get virusVerdict
    * @return virusVerdict
   **/
-  @ApiModelProperty(required = true, value = "")
+  @ApiModelProperty(value = "")
   public String getVirusVerdict() {
     return virusVerdict;
   }

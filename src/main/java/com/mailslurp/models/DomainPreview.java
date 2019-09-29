@@ -24,13 +24,18 @@ import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.UUID;
+import org.threeten.bp.OffsetDateTime;
 
 /**
  * Preview object for domain entity
  */
 @ApiModel(description = "Preview object for domain entity")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-23T11:36:29.853+02:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2019-09-29T20:55:35.418+02:00[Europe/Berlin]")
 public class DomainPreview {
+  public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
+  @SerializedName(SERIALIZED_NAME_CREATED_AT)
+  private OffsetDateTime createdAt;
+
   public static final String SERIALIZED_NAME_DOMAIN = "domain";
   @SerializedName(SERIALIZED_NAME_DOMAIN)
   private String domain;
@@ -38,6 +43,24 @@ public class DomainPreview {
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
+
+  public DomainPreview createdAt(OffsetDateTime createdAt) {
+    this.createdAt = createdAt;
+    return this;
+  }
+
+   /**
+   * Get createdAt
+   * @return createdAt
+  **/
+  @ApiModelProperty(required = true, value = "")
+  public OffsetDateTime getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(OffsetDateTime createdAt) {
+    this.createdAt = createdAt;
+  }
 
   public DomainPreview domain(String domain) {
     this.domain = domain;
@@ -85,13 +108,14 @@ public class DomainPreview {
       return false;
     }
     DomainPreview domainPreview = (DomainPreview) o;
-    return Objects.equals(this.domain, domainPreview.domain) &&
+    return Objects.equals(this.createdAt, domainPreview.createdAt) &&
+        Objects.equals(this.domain, domainPreview.domain) &&
         Objects.equals(this.id, domainPreview.id);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(domain, id);
+    return Objects.hash(createdAt, domain, id);
   }
 
 
@@ -100,6 +124,7 @@ public class DomainPreview {
     StringBuilder sb = new StringBuilder();
     sb.append("class DomainPreview {\n");
     
+    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("}");
