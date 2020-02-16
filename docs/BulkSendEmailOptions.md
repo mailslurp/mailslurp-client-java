@@ -1,7 +1,10 @@
 
+
 # BulkSendEmailOptions
 
+Bulk sending options
 ## Properties
+
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **inboxIds** | [**List&lt;UUID&gt;**](UUID.md) | Inboxes to send from |  [optional]
