@@ -1,6 +1,6 @@
 /*
  * MailSlurp API
- * ## Introduction  [MailSlurp](https://www.mailslurp.com) is an Email API for developers and QA testers. It let's users: - create emails addresses on demand - receive emails and attachments in code - send templated HTML emails  ## About  This page contains the REST API documentation for MailSlurp. All requests require API Key authentication passed as an `x-api-key` header.  Create an account to [get your free API Key](https://app.mailslurp.com/sign-up/).  ## Resources - 🔑 [Get API Key](https://app.mailslurp.com/sign-up/)                    - 🎓 [Developer Portal](https://www.mailslurp.com/docs/)           - 📦 [Library SDKs](https://www.mailslurp.com/docs/) - ✍️ [Code Examples](https://www.mailslurp.com/examples) - ⚠️ [Report an issue](https://drift.me/mailslurp)  ## Explore  
+ * MailSlurp is an API for sending and receiving emails from dynamically allocated email addresses. It's designed for developers and QA teams to test applications, process inbound emails, send templated notifications, attachments, and more.   ## Overview  #### Inboxes  Inboxes have real email addresses that can send and receive emails. You can create inboxes with specific email addresses (using custom domains). You can also use randomly assigned MailSlurp addresses as unique, disposable test addresses.   See the InboxController or [inbox and email address guide](https://www.mailslurp.com/guides/) for more information.  #### Receive Emails You can receive emails in a number of ways. You can fetch emails and attachments directly from an inbox. Or you can use `waitFor` endpoints to hold a connection open until an email is received that matches given criteria (such as subject or body content). You can also use webhooks to have emails from multiple inboxes forwarded to your server via HTTP POST.  InboxController methods with `waitFor` in the name have a long timeout period and instruct MailSlurp to wait until an expected email is received. You can set conditions on email counts, subject or body matches, and more.  Most receive methods only return an email ID and not the full email (to keep response sizes low). To fetch the full body or attachments for an email use the email's ID with EmailController endpoints.  See the InboxController or [receiving emails guide](https://www.mailslurp.com/guides/) for more information.  #### Send Emails You can send templated HTML emails in several ways. You must first create an inbox to send an email. An inbox can have a specific address or a randomly assigned one. You can send emails from an inbox using `to`, `cc`, and `bcc` recipient lists or with contacts and contact groups.   Emails can contain plain-text or HTML bodies. You can also use email templates that support [moustache](https://mustache.github.io/) template variables. You can send attachments by first posting files to the AttachmentController and then using the returned IDs in the `attachments` field of the send options.  See the InboxController or [sending emails guide](https://www.mailslurp.com/guides/) for more information.  ## Templates MailSlurp emails support templates. You can create templates in the dashboard or API that contain [moustache](https://mustache.github.io/) style variables: for instance `Hello {{name}}`. Then when sending emails you can pass a map of variables names and values to be used. Additionally, when sending emails with contact groups you can use properties of the contact in your templates like `{{firstName}}` and `{{lastName}}``.  ## Explore     
  *
  * The version of the OpenAPI document: 6.5.2
  * 
@@ -32,12 +32,8 @@ import org.threeten.bp.OffsetDateTime;
  * Representation of an inbox with an email address. Emails can be sent to or from this email address.
  */
 @ApiModel(description = "Representation of an inbox with an email address. Emails can be sent to or from this email address.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-16T15:06:53.253313+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-16T20:01:50.288141+01:00[Europe/Berlin]")
 public class Inbox {
-  public static final String SERIALIZED_NAME_CREATED = "created";
-  @SerializedName(SERIALIZED_NAME_CREATED)
-  private OffsetDateTime created;
-
   public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   private OffsetDateTime createdAt;
@@ -75,29 +71,6 @@ public class Inbox {
   private UUID userId;
 
 
-  public Inbox created(OffsetDateTime created) {
-    
-    this.created = created;
-    return this;
-  }
-
-   /**
-   * Get created
-   * @return created
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public OffsetDateTime getCreated() {
-    return created;
-  }
-
-
-  public void setCreated(OffsetDateTime created) {
-    this.created = created;
-  }
-
-
   public Inbox createdAt(OffsetDateTime createdAt) {
     
     this.createdAt = createdAt;
@@ -105,10 +78,11 @@ public class Inbox {
   }
 
    /**
-   * Get createdAt
+   * When was the inbox created
    * @return createdAt
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "When was the inbox created")
 
   public OffsetDateTime getCreatedAt() {
     return createdAt;
@@ -127,11 +101,11 @@ public class Inbox {
   }
 
    /**
-   * Description of inbox
+   * Optional description of an inbox for labelling purposes
    * @return description
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Description of inbox")
+  @ApiModelProperty(value = "Optional description of an inbox for labelling purposes")
 
   public String getDescription() {
     return description;
@@ -150,11 +124,11 @@ public class Inbox {
   }
 
    /**
-   * The inbox&#39;s email address. Send an email to this address and the inbox will receive it
+   * The inbox&#39;s email address. Send an email to this address and the inbox will receive and store it for you. To retrieve the email use the Inbox and Email Controller endpoints.
    * @return emailAddress
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "The inbox's email address. Send an email to this address and the inbox will receive it")
+  @ApiModelProperty(value = "The inbox's email address. Send an email to this address and the inbox will receive and store it for you. To retrieve the email use the Inbox and Email Controller endpoints.")
 
   public String getEmailAddress() {
     return emailAddress;
@@ -173,11 +147,11 @@ public class Inbox {
   }
 
    /**
-   * When if ever will the inbox expire
+   * When, if ever, will the inbox expire and be deleted. If null then this inbox is permanent and the emails in it won&#39;t be deleted.
    * @return expiresAt
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "When if ever will the inbox expire")
+  @ApiModelProperty(value = "When, if ever, will the inbox expire and be deleted. If null then this inbox is permanent and the emails in it won't be deleted.")
 
   public OffsetDateTime getExpiresAt() {
     return expiresAt;
@@ -219,10 +193,11 @@ public class Inbox {
   }
 
    /**
-   * Get id
+   * ID of the inbox
    * @return id
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ID of the inbox")
 
   public UUID getId() {
     return id;
@@ -241,11 +216,11 @@ public class Inbox {
   }
 
    /**
-   * Name of inbox
+   * Optional name of the inbox. Displayed in the dashboard for easier search
    * @return name
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "Name of inbox")
+  @ApiModelProperty(value = "Optional name of the inbox. Displayed in the dashboard for easier search")
 
   public String getName() {
     return name;
@@ -295,11 +270,11 @@ public class Inbox {
   }
 
    /**
-   * Get userId
+   * ID of user that inbox belongs to
    * @return userId
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "ID of user that inbox belongs to")
 
   public UUID getUserId() {
     return userId;
@@ -320,8 +295,7 @@ public class Inbox {
       return false;
     }
     Inbox inbox = (Inbox) o;
-    return Objects.equals(this.created, inbox.created) &&
-        Objects.equals(this.createdAt, inbox.createdAt) &&
+    return Objects.equals(this.createdAt, inbox.createdAt) &&
         Objects.equals(this.description, inbox.description) &&
         Objects.equals(this.emailAddress, inbox.emailAddress) &&
         Objects.equals(this.expiresAt, inbox.expiresAt) &&
@@ -334,7 +308,7 @@ public class Inbox {
 
   @Override
   public int hashCode() {
-    return Objects.hash(created, createdAt, description, emailAddress, expiresAt, favourite, id, name, tags, userId);
+    return Objects.hash(createdAt, description, emailAddress, expiresAt, favourite, id, name, tags, userId);
   }
 
 
@@ -342,7 +316,6 @@ public class Inbox {
   public String toString() {
     StringBuilder sb = new StringBuilder();
     sb.append("class Inbox {\n");
-    sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    emailAddress: ").append(toIndentedString(emailAddress)).append("\n");

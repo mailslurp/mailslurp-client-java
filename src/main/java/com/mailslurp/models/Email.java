@@ -1,6 +1,6 @@
 /*
  * MailSlurp API
- * ## Introduction  [MailSlurp](https://www.mailslurp.com) is an Email API for developers and QA testers. It let's users: - create emails addresses on demand - receive emails and attachments in code - send templated HTML emails  ## About  This page contains the REST API documentation for MailSlurp. All requests require API Key authentication passed as an `x-api-key` header.  Create an account to [get your free API Key](https://app.mailslurp.com/sign-up/).  ## Resources - 🔑 [Get API Key](https://app.mailslurp.com/sign-up/)                    - 🎓 [Developer Portal](https://www.mailslurp.com/docs/)           - 📦 [Library SDKs](https://www.mailslurp.com/docs/) - ✍️ [Code Examples](https://www.mailslurp.com/examples) - ⚠️ [Report an issue](https://drift.me/mailslurp)  ## Explore  
+ * MailSlurp is an API for sending and receiving emails from dynamically allocated email addresses. It's designed for developers and QA teams to test applications, process inbound emails, send templated notifications, attachments, and more.   ## Overview  #### Inboxes  Inboxes have real email addresses that can send and receive emails. You can create inboxes with specific email addresses (using custom domains). You can also use randomly assigned MailSlurp addresses as unique, disposable test addresses.   See the InboxController or [inbox and email address guide](https://www.mailslurp.com/guides/) for more information.  #### Receive Emails You can receive emails in a number of ways. You can fetch emails and attachments directly from an inbox. Or you can use `waitFor` endpoints to hold a connection open until an email is received that matches given criteria (such as subject or body content). You can also use webhooks to have emails from multiple inboxes forwarded to your server via HTTP POST.  InboxController methods with `waitFor` in the name have a long timeout period and instruct MailSlurp to wait until an expected email is received. You can set conditions on email counts, subject or body matches, and more.  Most receive methods only return an email ID and not the full email (to keep response sizes low). To fetch the full body or attachments for an email use the email's ID with EmailController endpoints.  See the InboxController or [receiving emails guide](https://www.mailslurp.com/guides/) for more information.  #### Send Emails You can send templated HTML emails in several ways. You must first create an inbox to send an email. An inbox can have a specific address or a randomly assigned one. You can send emails from an inbox using `to`, `cc`, and `bcc` recipient lists or with contacts and contact groups.   Emails can contain plain-text or HTML bodies. You can also use email templates that support [moustache](https://mustache.github.io/) template variables. You can send attachments by first posting files to the AttachmentController and then using the returned IDs in the `attachments` field of the send options.  See the InboxController or [sending emails guide](https://www.mailslurp.com/guides/) for more information.  ## Templates MailSlurp emails support templates. You can create templates in the dashboard or API that contain [moustache](https://mustache.github.io/) style variables: for instance `Hello {{name}}`. Then when sending emails you can pass a map of variables names and values to be used. Additionally, when sending emails with contact groups you can use properties of the contact in your templates like `{{firstName}}` and `{{lastName}}``.  ## Explore     
  *
  * The version of the OpenAPI document: 6.5.2
  * 
@@ -32,10 +32,10 @@ import java.util.UUID;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * Representation of an email
+ * Representation of an email received by an inbox. Use the ID to access more properties of an email using the EmailController endpoints.
  */
-@ApiModel(description = "Representation of an email")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-16T15:06:53.253313+01:00[Europe/Berlin]")
+@ApiModel(description = "Representation of an email received by an inbox. Use the ID to access more properties of an email using the EmailController endpoints.")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-16T20:01:50.288141+01:00[Europe/Berlin]")
 public class Email {
   public static final String SERIALIZED_NAME_ANALYSIS = "analysis";
   @SerializedName(SERIALIZED_NAME_ANALYSIS)
@@ -85,10 +85,6 @@ public class Email {
   @SerializedName(SERIALIZED_NAME_IS_H_T_M_L)
   private Boolean isHTML;
 
-  public static final String SERIALIZED_NAME_RAW_URL = "rawUrl";
-  @SerializedName(SERIALIZED_NAME_RAW_URL)
-  private String rawUrl;
-
   public static final String SERIALIZED_NAME_READ = "read";
   @SerializedName(SERIALIZED_NAME_READ)
   private Boolean read;
@@ -99,7 +95,7 @@ public class Email {
 
   public static final String SERIALIZED_NAME_TO = "to";
   @SerializedName(SERIALIZED_NAME_TO)
-  private List<String> to = new ArrayList<String>();
+  private List<String> to = null;
 
   public static final String SERIALIZED_NAME_UPDATED_AT = "updatedAt";
   @SerializedName(SERIALIZED_NAME_UPDATED_AT)
@@ -148,11 +144,11 @@ public class Email {
   }
 
    /**
-   * Get attachments
+   * List of IDs of attachments found in the email. Use these IDs with the Inbox and Email Controllers to download attachments and attachment meta data such as filesize, name, extension.
    * @return attachments
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of IDs of attachments found in the email. Use these IDs with the Inbox and Email Controllers to download attachments and attachment meta data such as filesize, name, extension.")
 
   public List<String> getAttachments() {
     return attachments;
@@ -179,11 +175,11 @@ public class Email {
   }
 
    /**
-   * Get bcc
+   * List of &#x60;BCC&#x60; recipients email was addressed to
    * @return bcc
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of `BCC` recipients email was addressed to")
 
   public List<String> getBcc() {
     return bcc;
@@ -202,11 +198,11 @@ public class Email {
   }
 
    /**
-   * Get body
+   * The body of the email message
    * @return body
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The body of the email message")
 
   public String getBody() {
     return body;
@@ -233,11 +229,11 @@ public class Email {
   }
 
    /**
-   * Get cc
+   * List of &#x60;CC&#x60; recipients email was addressed to
    * @return cc
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "List of `CC` recipients email was addressed to")
 
   public List<String> getCc() {
     return cc;
@@ -256,11 +252,11 @@ public class Email {
   }
 
    /**
-   * Get charset
+   * Detected character set of the email body such as UTF-8
    * @return charset
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Detected character set of the email body such as UTF-8")
 
   public String getCharset() {
     return charset;
@@ -279,10 +275,11 @@ public class Email {
   }
 
    /**
-   * Get createdAt
+   * When was the email received by MailSlurp
    * @return createdAt
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "When was the email received by MailSlurp")
 
   public OffsetDateTime getCreatedAt() {
     return createdAt;
@@ -301,11 +298,11 @@ public class Email {
   }
 
    /**
-   * Get from
+   * Who was the email sent from
    * @return from
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Who was the email sent from")
 
   public String getFrom() {
     return from;
@@ -355,10 +352,11 @@ public class Email {
   }
 
    /**
-   * Get id
+   * ID of the email
    * @return id
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ID of the email")
 
   public UUID getId() {
     return id;
@@ -377,10 +375,11 @@ public class Email {
   }
 
    /**
-   * Get inboxId
+   * ID of the inbox that received the email
    * @return inboxId
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ID of the inbox that received the email")
 
   public UUID getInboxId() {
     return inboxId;
@@ -399,11 +398,11 @@ public class Email {
   }
 
    /**
-   * Get isHTML
+   * Was HTML sent in the email body
    * @return isHTML
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "Was HTML sent in the email body")
 
   public Boolean getIsHTML() {
     return isHTML;
@@ -412,29 +411,6 @@ public class Email {
 
   public void setIsHTML(Boolean isHTML) {
     this.isHTML = isHTML;
-  }
-
-
-  public Email rawUrl(String rawUrl) {
-    
-    this.rawUrl = rawUrl;
-    return this;
-  }
-
-   /**
-   * Get rawUrl
-   * @return rawUrl
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getRawUrl() {
-    return rawUrl;
-  }
-
-
-  public void setRawUrl(String rawUrl) {
-    this.rawUrl = rawUrl;
   }
 
 
@@ -468,11 +444,11 @@ public class Email {
   }
 
    /**
-   * Get subject
+   * The subject line of the email message
    * @return subject
   **/
   @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "The subject line of the email message")
 
   public String getSubject() {
     return subject;
@@ -491,15 +467,19 @@ public class Email {
   }
 
   public Email addToItem(String toItem) {
+    if (this.to == null) {
+      this.to = new ArrayList<String>();
+    }
     this.to.add(toItem);
     return this;
   }
 
    /**
-   * Get to
+   * List of &#x60;To&#x60; recipients email was addressed to
    * @return to
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "List of `To` recipients email was addressed to")
 
   public List<String> getTo() {
     return to;
@@ -518,10 +498,11 @@ public class Email {
   }
 
    /**
-   * Get updatedAt
+   * When was the email last updated
    * @return updatedAt
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "When was the email last updated")
 
   public OffsetDateTime getUpdatedAt() {
     return updatedAt;
@@ -540,10 +521,11 @@ public class Email {
   }
 
    /**
-   * Get userId
+   * ID of user that email belongs
    * @return userId
   **/
-  @ApiModelProperty(required = true, value = "")
+  @javax.annotation.Nullable
+  @ApiModelProperty(value = "ID of user that email belongs")
 
   public UUID getUserId() {
     return userId;
@@ -576,7 +558,6 @@ public class Email {
         Objects.equals(this.id, email.id) &&
         Objects.equals(this.inboxId, email.inboxId) &&
         Objects.equals(this.isHTML, email.isHTML) &&
-        Objects.equals(this.rawUrl, email.rawUrl) &&
         Objects.equals(this.read, email.read) &&
         Objects.equals(this.subject, email.subject) &&
         Objects.equals(this.to, email.to) &&
@@ -586,7 +567,7 @@ public class Email {
 
   @Override
   public int hashCode() {
-    return Objects.hash(analysis, attachments, bcc, body, cc, charset, createdAt, from, headers, id, inboxId, isHTML, rawUrl, read, subject, to, updatedAt, userId);
+    return Objects.hash(analysis, attachments, bcc, body, cc, charset, createdAt, from, headers, id, inboxId, isHTML, read, subject, to, updatedAt, userId);
   }
 
 
@@ -606,7 +587,6 @@ public class Email {
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    inboxId: ").append(toIndentedString(inboxId)).append("\n");
     sb.append("    isHTML: ").append(toIndentedString(isHTML)).append("\n");
-    sb.append("    rawUrl: ").append(toIndentedString(rawUrl)).append("\n");
     sb.append("    read: ").append(toIndentedString(read)).append("\n");
     sb.append("    subject: ").append(toIndentedString(subject)).append("\n");
     sb.append("    to: ").append(toIndentedString(to)).append("\n");

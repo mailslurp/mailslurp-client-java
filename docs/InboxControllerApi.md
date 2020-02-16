@@ -644,8 +644,8 @@ public class Example {
     //API_KEY.setApiKeyPrefix("Token");
 
     InboxControllerApi apiInstance = new InboxControllerApi(defaultClient);
-    UUID inboxId = new UUID(); // UUID | inboxId
-    SendEmailOptions sendEmailOptions = new SendEmailOptions(); // SendEmailOptions | sendEmailOptions
+    UUID inboxId = new UUID(); // UUID | ID of the inbox you want to send the email from
+    SendEmailOptions sendEmailOptions = new SendEmailOptions(); // SendEmailOptions | Options for the email
     try {
       apiInstance.sendEmail(inboxId, sendEmailOptions);
     } catch (ApiException e) {
@@ -663,8 +663,8 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inboxId** | [**UUID**](.md)| inboxId |
- **sendEmailOptions** | [**SendEmailOptions**](SendEmailOptions.md)| sendEmailOptions |
+ **inboxId** | [**UUID**](.md)| ID of the inbox you want to send the email from |
+ **sendEmailOptions** | [**SendEmailOptions**](SendEmailOptions.md)| Options for the email | [optional]
 
 ### Return type
 

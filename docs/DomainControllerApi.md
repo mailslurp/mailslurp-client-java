@@ -12,7 +12,7 @@ Method | HTTP request | Description
 
 <a name="createDomain"></a>
 # **createDomain**
-> DomainPlusVerificationRecordsAndStatus createDomain(domainOptions)
+> DomainDto createDomain(domainOptions)
 
 Create Domain
 
@@ -42,7 +42,7 @@ public class Example {
     DomainControllerApi apiInstance = new DomainControllerApi(defaultClient);
     CreateDomainOptions domainOptions = new CreateDomainOptions(); // CreateDomainOptions | domainOptions
     try {
-      DomainPlusVerificationRecordsAndStatus result = apiInstance.createDomain(domainOptions);
+      DomainDto result = apiInstance.createDomain(domainOptions);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DomainControllerApi#createDomain");
@@ -63,7 +63,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DomainPlusVerificationRecordsAndStatus**](DomainPlusVerificationRecordsAndStatus.md)
+[**DomainDto**](DomainDto.md)
 
 ### Authorization
 
@@ -155,7 +155,7 @@ null (empty response body)
 
 <a name="getDomain"></a>
 # **getDomain**
-> DomainPlusVerificationRecordsAndStatus getDomain(id)
+> DomainDto getDomain(id)
 
 Get a domain
 
@@ -185,7 +185,7 @@ public class Example {
     DomainControllerApi apiInstance = new DomainControllerApi(defaultClient);
     UUID id = new UUID(); // UUID | id
     try {
-      DomainPlusVerificationRecordsAndStatus result = apiInstance.getDomain(id);
+      DomainDto result = apiInstance.getDomain(id);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling DomainControllerApi#getDomain");
@@ -206,7 +206,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**DomainPlusVerificationRecordsAndStatus**](DomainPlusVerificationRecordsAndStatus.md)
+[**DomainDto**](DomainDto.md)
 
 ### Authorization
 

@@ -485,7 +485,7 @@ public class Example {
     //API_KEY.setApiKeyPrefix("Token");
 
     CommonActionsControllerApi apiInstance = new CommonActionsControllerApi(defaultClient);
-    UUID inboxId = new UUID(); // UUID | Id of the inbox we are fetching emails from
+    UUID inboxId = new UUID(); // UUID | Id of the inbox you are fetching emails from
     Integer index = 56; // Integer | Zero based index of the email to wait for
     Long timeout = 56L; // Long | Max milliseconds to wait
     Boolean unreadOnly = false; // Boolean | Optional filter for unread only
@@ -507,7 +507,7 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inboxId** | [**UUID**](.md)| Id of the inbox we are fetching emails from | [optional]
+ **inboxId** | [**UUID**](.md)| Id of the inbox you are fetching emails from | [optional]
  **index** | **Integer**| Zero based index of the email to wait for | [optional]
  **timeout** | **Long**| Max milliseconds to wait | [optional]
  **unreadOnly** | **Boolean**| Optional filter for unread only | [optional] [default to false]

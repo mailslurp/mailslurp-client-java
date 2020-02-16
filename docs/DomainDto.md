@@ -1,18 +1,19 @@
 
 
-# WebhookProjection
+# DomainDto
 
-Representation of a webhook
+Domain plus verification records and status
 ## Properties
 
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **createdAt** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
+**domain** | **String** |  | 
 **id** | [**UUID**](UUID.md) |  | 
-**inboxId** | [**UUID**](UUID.md) |  | 
-**name** | **String** |  |  [optional]
+**isVerified** | **Boolean** |  | 
 **updatedAt** | [**OffsetDateTime**](OffsetDateTime.md) |  | 
-**url** | **String** |  | 
+**userId** | [**UUID**](UUID.md) |  | 
+**verificationToken** | **String** |  | 
 
 
 

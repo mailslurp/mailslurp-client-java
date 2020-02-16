@@ -13,123 +13,89 @@
 
 package com.mailslurp.models;
 
-import java.util.Objects;
-import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import com.mailslurp.models.ContactDto;
-import com.mailslurp.models.GroupDto;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.UUID;
+import org.threeten.bp.OffsetDateTime;
+import org.junit.Assert;
+import org.junit.Ignore;
+import org.junit.Test;
+
 
 /**
- * GroupContactsDto
+ * Model tests for DomainDto
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-16T20:01:50.288141+01:00[Europe/Berlin]")
-public class GroupContactsDto {
-  public static final String SERIALIZED_NAME_CONTACTS = "contacts";
-  @SerializedName(SERIALIZED_NAME_CONTACTS)
-  private List<ContactDto> contacts = new ArrayList<ContactDto>();
+public class DomainDtoTest {
+    private final DomainDto model = new DomainDto();
 
-  public static final String SERIALIZED_NAME_GROUP = "group";
-  @SerializedName(SERIALIZED_NAME_GROUP)
-  private GroupDto group;
-
-
-  public GroupContactsDto contacts(List<ContactDto> contacts) {
-    
-    this.contacts = contacts;
-    return this;
-  }
-
-  public GroupContactsDto addContactsItem(ContactDto contactsItem) {
-    this.contacts.add(contactsItem);
-    return this;
-  }
-
-   /**
-   * Get contacts
-   * @return contacts
-  **/
-  @ApiModelProperty(required = true, value = "")
-
-  public List<ContactDto> getContacts() {
-    return contacts;
-  }
-
-
-  public void setContacts(List<ContactDto> contacts) {
-    this.contacts = contacts;
-  }
-
-
-  public GroupContactsDto group(GroupDto group) {
-    
-    this.group = group;
-    return this;
-  }
-
-   /**
-   * Get group
-   * @return group
-  **/
-  @ApiModelProperty(required = true, value = "")
-
-  public GroupDto getGroup() {
-    return group;
-  }
-
-
-  public void setGroup(GroupDto group) {
-    this.group = group;
-  }
-
-
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
+    /**
+     * Model tests for DomainDto
+     */
+    @Test
+    public void testDomainDto() {
+        // TODO: test DomainDto
     }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
+
+    /**
+     * Test the property 'createdAt'
+     */
+    @Test
+    public void createdAtTest() {
+        // TODO: test createdAt
     }
-    GroupContactsDto groupContactsDto = (GroupContactsDto) o;
-    return Objects.equals(this.contacts, groupContactsDto.contacts) &&
-        Objects.equals(this.group, groupContactsDto.group);
-  }
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(contacts, group);
-  }
-
-
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class GroupContactsDto {\n");
-    sb.append("    contacts: ").append(toIndentedString(contacts)).append("\n");
-    sb.append("    group: ").append(toIndentedString(group)).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
-
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
+    /**
+     * Test the property 'domain'
+     */
+    @Test
+    public void domainTest() {
+        // TODO: test domain
     }
-    return o.toString().replace("\n", "\n    ");
-  }
+
+    /**
+     * Test the property 'id'
+     */
+    @Test
+    public void idTest() {
+        // TODO: test id
+    }
+
+    /**
+     * Test the property 'isVerified'
+     */
+    @Test
+    public void isVerifiedTest() {
+        // TODO: test isVerified
+    }
+
+    /**
+     * Test the property 'updatedAt'
+     */
+    @Test
+    public void updatedAtTest() {
+        // TODO: test updatedAt
+    }
+
+    /**
+     * Test the property 'userId'
+     */
+    @Test
+    public void userIdTest() {
+        // TODO: test userId
+    }
+
+    /**
+     * Test the property 'verificationToken'
+     */
+    @Test
+    public void verificationTokenTest() {
+        // TODO: test verificationToken
+    }
 
 }
-

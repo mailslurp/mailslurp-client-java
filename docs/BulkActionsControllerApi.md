@@ -15,8 +15,6 @@ Method | HTTP request | Description
 
 Bulk create Inboxes (email addresses)
 
-Enterprise Plan Required
-
 ### Example
 ```java
 // Import classes:
@@ -87,8 +85,6 @@ Name | Type | Description  | Notes
 
 Bulk Delete Inboxes
 
-Enterprise Plan Required
-
 ### Example
 ```java
 // Import classes:
@@ -156,8 +152,6 @@ null (empty response body)
 > bulkSendEmails(bulkSendEmailOptions)
 
 Bulk Send Emails
-
-Enterprise Plan Required
 
 ### Example
 ```java

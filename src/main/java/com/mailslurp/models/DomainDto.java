@@ -27,59 +27,41 @@ import java.util.UUID;
 import org.threeten.bp.OffsetDateTime;
 
 /**
- * ContactProjection
+ * Domain plus verification records and status
  */
+@ApiModel(description = "Domain plus verification records and status")
 @javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-02-16T20:01:50.288141+01:00[Europe/Berlin]")
-public class ContactProjection {
-  public static final String SERIALIZED_NAME_COMPANY = "company";
-  @SerializedName(SERIALIZED_NAME_COMPANY)
-  private String company;
-
+public class DomainDto {
   public static final String SERIALIZED_NAME_CREATED_AT = "createdAt";
   @SerializedName(SERIALIZED_NAME_CREATED_AT)
   private OffsetDateTime createdAt;
 
-  public static final String SERIALIZED_NAME_FIRST_NAME = "firstName";
-  @SerializedName(SERIALIZED_NAME_FIRST_NAME)
-  private String firstName;
+  public static final String SERIALIZED_NAME_DOMAIN = "domain";
+  @SerializedName(SERIALIZED_NAME_DOMAIN)
+  private String domain;
 
   public static final String SERIALIZED_NAME_ID = "id";
   @SerializedName(SERIALIZED_NAME_ID)
   private UUID id;
 
-  public static final String SERIALIZED_NAME_LAST_NAME = "lastName";
-  @SerializedName(SERIALIZED_NAME_LAST_NAME)
-  private String lastName;
+  public static final String SERIALIZED_NAME_IS_VERIFIED = "isVerified";
+  @SerializedName(SERIALIZED_NAME_IS_VERIFIED)
+  private Boolean isVerified;
 
-  public static final String SERIALIZED_NAME_OPT_OUT = "optOut";
-  @SerializedName(SERIALIZED_NAME_OPT_OUT)
-  private Boolean optOut;
+  public static final String SERIALIZED_NAME_UPDATED_AT = "updatedAt";
+  @SerializedName(SERIALIZED_NAME_UPDATED_AT)
+  private OffsetDateTime updatedAt;
 
+  public static final String SERIALIZED_NAME_USER_ID = "userId";
+  @SerializedName(SERIALIZED_NAME_USER_ID)
+  private UUID userId;
 
-  public ContactProjection company(String company) {
-    
-    this.company = company;
-    return this;
-  }
-
-   /**
-   * Get company
-   * @return company
-  **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
-
-  public String getCompany() {
-    return company;
-  }
+  public static final String SERIALIZED_NAME_VERIFICATION_TOKEN = "verificationToken";
+  @SerializedName(SERIALIZED_NAME_VERIFICATION_TOKEN)
+  private String verificationToken;
 
 
-  public void setCompany(String company) {
-    this.company = company;
-  }
-
-
-  public ContactProjection createdAt(OffsetDateTime createdAt) {
+  public DomainDto createdAt(OffsetDateTime createdAt) {
     
     this.createdAt = createdAt;
     return this;
@@ -101,30 +83,29 @@ public class ContactProjection {
   }
 
 
-  public ContactProjection firstName(String firstName) {
+  public DomainDto domain(String domain) {
     
-    this.firstName = firstName;
+    this.domain = domain;
     return this;
   }
 
    /**
-   * Get firstName
-   * @return firstName
+   * Get domain
+   * @return domain
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
-  public String getFirstName() {
-    return firstName;
+  public String getDomain() {
+    return domain;
   }
 
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
+  public void setDomain(String domain) {
+    this.domain = domain;
   }
 
 
-  public ContactProjection id(UUID id) {
+  public DomainDto id(UUID id) {
     
     this.id = id;
     return this;
@@ -146,49 +127,91 @@ public class ContactProjection {
   }
 
 
-  public ContactProjection lastName(String lastName) {
+  public DomainDto isVerified(Boolean isVerified) {
     
-    this.lastName = lastName;
+    this.isVerified = isVerified;
     return this;
   }
 
    /**
-   * Get lastName
-   * @return lastName
+   * Get isVerified
+   * @return isVerified
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
-  public String getLastName() {
-    return lastName;
+  public Boolean getIsVerified() {
+    return isVerified;
   }
 
 
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
+  public void setIsVerified(Boolean isVerified) {
+    this.isVerified = isVerified;
   }
 
 
-  public ContactProjection optOut(Boolean optOut) {
+  public DomainDto updatedAt(OffsetDateTime updatedAt) {
     
-    this.optOut = optOut;
+    this.updatedAt = updatedAt;
     return this;
   }
 
    /**
-   * Get optOut
-   * @return optOut
+   * Get updatedAt
+   * @return updatedAt
   **/
-  @javax.annotation.Nullable
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
 
-  public Boolean getOptOut() {
-    return optOut;
+  public OffsetDateTime getUpdatedAt() {
+    return updatedAt;
   }
 
 
-  public void setOptOut(Boolean optOut) {
-    this.optOut = optOut;
+  public void setUpdatedAt(OffsetDateTime updatedAt) {
+    this.updatedAt = updatedAt;
+  }
+
+
+  public DomainDto userId(UUID userId) {
+    
+    this.userId = userId;
+    return this;
+  }
+
+   /**
+   * Get userId
+   * @return userId
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public UUID getUserId() {
+    return userId;
+  }
+
+
+  public void setUserId(UUID userId) {
+    this.userId = userId;
+  }
+
+
+  public DomainDto verificationToken(String verificationToken) {
+    
+    this.verificationToken = verificationToken;
+    return this;
+  }
+
+   /**
+   * Get verificationToken
+   * @return verificationToken
+  **/
+  @ApiModelProperty(required = true, value = "")
+
+  public String getVerificationToken() {
+    return verificationToken;
+  }
+
+
+  public void setVerificationToken(String verificationToken) {
+    this.verificationToken = verificationToken;
   }
 
 
@@ -200,31 +223,33 @@ public class ContactProjection {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    ContactProjection contactProjection = (ContactProjection) o;
-    return Objects.equals(this.company, contactProjection.company) &&
-        Objects.equals(this.createdAt, contactProjection.createdAt) &&
-        Objects.equals(this.firstName, contactProjection.firstName) &&
-        Objects.equals(this.id, contactProjection.id) &&
-        Objects.equals(this.lastName, contactProjection.lastName) &&
-        Objects.equals(this.optOut, contactProjection.optOut);
+    DomainDto domainDto = (DomainDto) o;
+    return Objects.equals(this.createdAt, domainDto.createdAt) &&
+        Objects.equals(this.domain, domainDto.domain) &&
+        Objects.equals(this.id, domainDto.id) &&
+        Objects.equals(this.isVerified, domainDto.isVerified) &&
+        Objects.equals(this.updatedAt, domainDto.updatedAt) &&
+        Objects.equals(this.userId, domainDto.userId) &&
+        Objects.equals(this.verificationToken, domainDto.verificationToken);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(company, createdAt, firstName, id, lastName, optOut);
+    return Objects.hash(createdAt, domain, id, isVerified, updatedAt, userId, verificationToken);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class ContactProjection {\n");
-    sb.append("    company: ").append(toIndentedString(company)).append("\n");
+    sb.append("class DomainDto {\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
-    sb.append("    firstName: ").append(toIndentedString(firstName)).append("\n");
+    sb.append("    domain: ").append(toIndentedString(domain)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
-    sb.append("    lastName: ").append(toIndentedString(lastName)).append("\n");
-    sb.append("    optOut: ").append(toIndentedString(optOut)).append("\n");
+    sb.append("    isVerified: ").append(toIndentedString(isVerified)).append("\n");
+    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
+    sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    verificationToken: ").append(toIndentedString(verificationToken)).append("\n");
     sb.append("}");
     return sb.toString();
   }

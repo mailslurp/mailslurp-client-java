@@ -2,6 +2,7 @@
 
 # WebhookTestResult
 
+Results of testing a webhook
 ## Properties
 
 Name | Type | Description | Notes
