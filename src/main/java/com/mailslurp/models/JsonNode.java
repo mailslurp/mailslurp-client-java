@@ -27,7 +27,7 @@ import java.io.IOException;
 /**
  * JsonNode
  */
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-15T11:55:54.663251+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-15T11:59:35.364694+01:00[Europe/Berlin]")
 public class JsonNode {
   public static final String SERIALIZED_NAME_ARRAY = "array";
   @SerializedName(SERIALIZED_NAME_ARRAY)
