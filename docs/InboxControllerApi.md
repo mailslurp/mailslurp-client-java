@@ -6,14 +6,15 @@ Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**createInbox**](InboxControllerApi.md#createInbox) | **POST** /inboxes | Create an Inbox (email address)
 [**deleteAllInboxes**](InboxControllerApi.md#deleteAllInboxes) | **DELETE** /inboxes | Delete all inboxes
-[**deleteInbox**](InboxControllerApi.md#deleteInbox) | **DELETE** /inboxes/{inboxId} | Delete Inbox / Email Address
+[**deleteInbox**](InboxControllerApi.md#deleteInbox) | **DELETE** /inboxes/{inboxId} | Delete inbox
 [**getAllInboxes**](InboxControllerApi.md#getAllInboxes) | **GET** /inboxes/paginated | List Inboxes Paginated
 [**getEmails**](InboxControllerApi.md#getEmails) | **GET** /inboxes/{inboxId}/emails | Get emails in an Inbox
-[**getInbox**](InboxControllerApi.md#getInbox) | **GET** /inboxes/{inboxId} | Get Inbox / EmailAddress
+[**getInbox**](InboxControllerApi.md#getInbox) | **GET** /inboxes/{inboxId} | Get Inbox
 [**getInboxEmailsPaginated**](InboxControllerApi.md#getInboxEmailsPaginated) | **GET** /inboxes/{inboxId}/emails/paginated | Get inbox emails paginated
 [**getInboxes**](InboxControllerApi.md#getInboxes) | **GET** /inboxes | List Inboxes / Email Addresses
 [**sendEmail**](InboxControllerApi.md#sendEmail) | **POST** /inboxes/{inboxId} | Send Email
 [**setInboxFavourited**](InboxControllerApi.md#setInboxFavourited) | **PUT** /inboxes/{inboxId}/favourite | Set inbox favourited state
+[**updateInbox**](InboxControllerApi.md#updateInbox) | **PATCH** /inboxes/{inboxId} | Update Inbox
 
 
 <a name="createInbox"></a>
@@ -22,7 +23,7 @@ Method | HTTP request | Description
 
 Create an Inbox (email address)
 
-Create a new inbox and with a ranmdomized email address to send and receive from. Pass emailAddress parameter if you wish to use a specific email address. Creating an inbox is required before sending or receiving emails. If writing tests it is recommended that you create a new inbox during each test method so that it is unique and empty. 
+Create a new inbox and with a randomized email address to send and receive from. Pass emailAddress parameter if you wish to use a specific email address. Creating an inbox is required before sending or receiving emails. If writing tests it is recommended that you create a new inbox during each test method so that it is unique and empty. 
 
 ### Example
 ```java
@@ -104,7 +105,7 @@ Name | Type | Description  | Notes
 
 Delete all inboxes
 
-Permanently delete all inboxes and associated email addresses and all emails within the given inboxes
+Permanently delete all inboxes and associated email addresses. This will also delete all emails within the inboxes. Be careful as inboxes cannot be recovered once deleted. Note: deleting inboxes will not impact your usage limits. Monthly inbox creation limits are based on how many inboxes were created in the last 30 days, not how many inboxes you currently have.
 
 ### Example
 ```java
@@ -168,9 +169,9 @@ null (empty response body)
 # **deleteInbox**
 > deleteInbox(inboxId)
 
-Delete Inbox / Email Address
+Delete inbox
 
-Permanently delete an inbox and associated email address and all emails within the given inboxes
+Permanently delete an inbox and associated email address aswell as all emails within the given inbox. This action cannot be undone. Note: deleting an inbox will not affect your account usage. Monthly inbox usage is based on how many inboxes you create within 30 days, not how many exist at time of request.
 
 ### Example
 ```java
@@ -400,7 +401,7 @@ Name | Type | Description  | Notes
 # **getInbox**
 > Inbox getInbox(inboxId)
 
-Get Inbox / EmailAddress
+Get Inbox
 
 Returns an inbox&#39;s properties, including its email address and ID.
 
@@ -620,7 +621,7 @@ This endpoint does not need any parameter.
 
 Send Email
 
-Send an email from the inbox&#39;s email address. Specify the email recipients and contents in the request body. See the &#x60;SendEmailOptions&#x60; for more information. Note the &#x60;inboxId&#x60; refers to the inbox&#39;s id NOT its email address
+Send an email from an inbox&#39;s email address.  The request body should contain the &#x60;SendEmailOptions&#x60; that include recipients, attachments, body etc. See &#x60;SendEmailOptions&#x60; for all available properties. Note the &#x60;inboxId&#x60; refers to the inbox&#39;s id not the inbox&#39;s email address. See https://www.mailslurp.com/guides/ for more information on how to send emails.
 
 ### Example
 ```java
@@ -761,4 +762,78 @@ Name | Type | Description  | Notes
 **401** | Unauthorized |  -  |
 **403** | Forbidden |  -  |
 **404** | Not Found |  -  |
+
+<a name="updateInbox"></a>
+# **updateInbox**
+> Inbox updateInbox(inboxId, updateInboxOptions)
+
+Update Inbox
+
+Update editable fields on an inbox
+
+### Example
+```java
+// Import classes:
+import com.mailslurp.client.ApiClient;
+import com.mailslurp.client.ApiException;
+import com.mailslurp.client.Configuration;
+import com.mailslurp.client.auth.*;
+import com.mailslurp.client.models.*;
+import com.mailslurp.api.api.InboxControllerApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.mailslurp.com");
+    
+    // Configure API key authorization: API_KEY
+    ApiKeyAuth API_KEY = (ApiKeyAuth) defaultClient.getAuthentication("API_KEY");
+    API_KEY.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //API_KEY.setApiKeyPrefix("Token");
+
+    InboxControllerApi apiInstance = new InboxControllerApi(defaultClient);
+    UUID inboxId = new UUID(); // UUID | inboxId
+    UpdateInboxOptions updateInboxOptions = new UpdateInboxOptions(); // UpdateInboxOptions | updateInboxOptions
+    try {
+      Inbox result = apiInstance.updateInbox(inboxId, updateInboxOptions);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling InboxControllerApi#updateInbox");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **inboxId** | [**UUID**](.md)| inboxId |
+ **updateInboxOptions** | [**UpdateInboxOptions**](UpdateInboxOptions.md)| updateInboxOptions |
+
+### Return type
+
+[**Inbox**](Inbox.md)
+
+### Authorization
+
+[API_KEY](../README.md#API_KEY)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**204** | No Content |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
 

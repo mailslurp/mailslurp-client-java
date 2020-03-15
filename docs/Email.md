@@ -14,7 +14,7 @@ Name | Type | Description | Notes
 **cc** | **List&lt;String&gt;** | List of &#x60;CC&#x60; recipients email was addressed to |  [optional]
 **charset** | **String** | Detected character set of the email body such as UTF-8 |  [optional]
 **createdAt** | [**OffsetDateTime**](OffsetDateTime.md) | When was the email received by MailSlurp |  [optional]
-**from** | **String** | Who was the email sent from |  [optional]
+**from** | **String** | Who the email was sent from |  [optional]
 **headers** | **Map&lt;String, String&gt;** |  |  [optional]
 **id** | [**UUID**](UUID.md) | ID of the email |  [optional]
 **inboxId** | [**UUID**](UUID.md) | ID of the inbox that received the email |  [optional]

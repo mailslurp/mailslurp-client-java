@@ -5,14 +5,17 @@ All URIs are relative to *https://api.mailslurp.com*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**deleteAllEmails**](EmailControllerApi.md#deleteAllEmails) | **DELETE** /emails | Delete all emails
-[**deleteEmail**](EmailControllerApi.md#deleteEmail) | **DELETE** /emails/{emailId} | Delete Email
-[**downloadAttachment**](EmailControllerApi.md#downloadAttachment) | **GET** /emails/{emailId}/attachments/{attachmentId} | Get email attachment
-[**forwardEmail**](EmailControllerApi.md#forwardEmail) | **POST** /emails/{emailId}/forward | Forward Email
+[**deleteEmail**](EmailControllerApi.md#deleteEmail) | **DELETE** /emails/{emailId} | Delete an email
+[**downloadAttachment**](EmailControllerApi.md#downloadAttachment) | **GET** /emails/{emailId}/attachments/{attachmentId} | Get email attachment bytes
+[**forwardEmail**](EmailControllerApi.md#forwardEmail) | **POST** /emails/{emailId}/forward | Forward email
 [**getAttachmentMetaData**](EmailControllerApi.md#getAttachmentMetaData) | **GET** /emails/{emailId}/attachments/{attachmentId}/metadata | Get email attachment metadata
 [**getAttachments**](EmailControllerApi.md#getAttachments) | **GET** /emails/{emailId}/attachments | Get all email attachment metadata
-[**getEmail**](EmailControllerApi.md#getEmail) | **GET** /emails/{emailId} | Get Email Content
+[**getEmail**](EmailControllerApi.md#getEmail) | **GET** /emails/{emailId} | Get email content
+[**getEmailHTML**](EmailControllerApi.md#getEmailHTML) | **GET** /emails/{emailId}/html | Get email content as HTML
 [**getEmailsPaginated**](EmailControllerApi.md#getEmailsPaginated) | **GET** /emails | Get all emails
-[**getRawEmailContents**](EmailControllerApi.md#getRawEmailContents) | **GET** /emails/{emailId}/raw | Get Raw Email Content
+[**getRawEmailContents**](EmailControllerApi.md#getRawEmailContents) | **GET** /emails/{emailId}/raw | Get raw email string
+[**getRawEmailJson**](EmailControllerApi.md#getRawEmailJson) | **GET** /emails/{emailId}/raw/json | Get raw email in JSON
+[**getUnreadEmailCount**](EmailControllerApi.md#getUnreadEmailCount) | **GET** /emails/unreadCount | Get unread email count
 [**validateEmail**](EmailControllerApi.md#validateEmail) | **POST** /emails/{emailId}/validate | Validate email
 
 
@@ -22,7 +25,7 @@ Method | HTTP request | Description
 
 Delete all emails
 
-Deletes all emails
+Deletes all emails in your account. Be careful as emails cannot be recovered
 
 ### Example
 ```java
@@ -86,9 +89,9 @@ null (empty response body)
 # **deleteEmail**
 > deleteEmail(emailId)
 
-Delete Email
+Delete an email
 
-Deletes an email and removes it from the inbox
+Deletes an email and removes it from the inbox. Deleted emails cannot be recovered.
 
 ### Example
 ```java
@@ -156,9 +159,9 @@ null (empty response body)
 # **downloadAttachment**
 > byte[] downloadAttachment(attachmentId, emailId, apiKey)
 
-Get email attachment
+Get email attachment bytes
 
-Returns the specified attachment for a given email as a byte stream (file download). Get the attachmentId from the email response.
+Returns the specified attachment for a given email as a byte stream (file download). You can find attachment ids in email responses endpoint responses. The response type is application/octet-stream.
 
 ### Example
 ```java
@@ -232,9 +235,9 @@ Name | Type | Description  | Notes
 # **forwardEmail**
 > forwardEmail(emailId, forwardEmailOptions)
 
-Forward Email
+Forward email
 
-Forward email content to given recipients
+Forward an existing email to new recipients.
 
 ### Example
 ```java
@@ -449,11 +452,11 @@ Name | Type | Description  | Notes
 
 <a name="getEmail"></a>
 # **getEmail**
-> Email getEmail(emailId)
+> Email getEmail(emailId, decode)
 
-Get Email Content
+Get email content
 
-Returns a email summary object with headers and content. To retrieve the raw unparsed email use the getRawMessage endpoint
+Returns a email summary object with headers and content. To retrieve the raw unparsed email use the getRawEmail endpoints
 
 ### Example
 ```java
@@ -478,8 +481,9 @@ public class Example {
 
     EmailControllerApi apiInstance = new EmailControllerApi(defaultClient);
     UUID emailId = new UUID(); // UUID | emailId
+    Boolean decode = false; // Boolean | Decode email body quoted-printable encoding to plain text. SMTP servers often encode text using quoted-printable format (for instance `=D7`). This can be a pain for testing
     try {
-      Email result = apiInstance.getEmail(emailId);
+      Email result = apiInstance.getEmail(emailId, decode);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling EmailControllerApi#getEmail");
@@ -497,6 +501,7 @@ public class Example {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **emailId** | [**UUID**](.md)| emailId |
+ **decode** | **Boolean**| Decode email body quoted-printable encoding to plain text. SMTP servers often encode text using quoted-printable format (for instance &#x60;&#x3D;D7&#x60;). This can be a pain for testing | [optional] [default to false]
 
 ### Return type
 
@@ -519,13 +524,13 @@ Name | Type | Description  | Notes
 **403** | Forbidden |  -  |
 **404** | Not Found |  -  |
 
-<a name="getEmailsPaginated"></a>
-# **getEmailsPaginated**
-> PageEmailProjection getEmailsPaginated(inboxId, page, size, sort, unreadOnly)
+<a name="getEmailHTML"></a>
+# **getEmailHTML**
+> String getEmailHTML(emailId, decode)
 
-Get all emails
+Get email content as HTML
 
-Responses are paginated
+Retrieve email content as HTML response for viewing in browsers. Decodes quoted-printable entities and converts charset to UTF-8. Pass your API KEY as a request parameter when viewing in a browser: &#x60;?apiKey&#x3D;xxx&#x60;
 
 ### Example
 ```java
@@ -549,11 +554,85 @@ public class Example {
     //API_KEY.setApiKeyPrefix("Token");
 
     EmailControllerApi apiInstance = new EmailControllerApi(defaultClient);
-    List<UUID> inboxId = Arrays.asList(); // List<UUID> | Optional inbox ids to filter by. Can be repeated
+    UUID emailId = new UUID(); // UUID | emailId
+    Boolean decode = false; // Boolean | decode
+    try {
+      String result = apiInstance.getEmailHTML(emailId, decode);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling EmailControllerApi#getEmailHTML");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **emailId** | [**UUID**](.md)| emailId |
+ **decode** | **Boolean**| decode | [optional] [default to false]
+
+### Return type
+
+**String**
+
+### Authorization
+
+[API_KEY](../README.md#API_KEY)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: text/html
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+<a name="getEmailsPaginated"></a>
+# **getEmailsPaginated**
+> PageEmailProjection getEmailsPaginated(inboxId, page, size, sort, unreadOnly)
+
+Get all emails
+
+By default returns all emails across all inboxes sorted by ascending created at date. Responses are paginated. You can restrict results to a list of inbox IDs. You can also filter out read messages
+
+### Example
+```java
+// Import classes:
+import com.mailslurp.client.ApiClient;
+import com.mailslurp.client.ApiException;
+import com.mailslurp.client.Configuration;
+import com.mailslurp.client.auth.*;
+import com.mailslurp.client.models.*;
+import com.mailslurp.api.api.EmailControllerApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.mailslurp.com");
+    
+    // Configure API key authorization: API_KEY
+    ApiKeyAuth API_KEY = (ApiKeyAuth) defaultClient.getAuthentication("API_KEY");
+    API_KEY.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //API_KEY.setApiKeyPrefix("Token");
+
+    EmailControllerApi apiInstance = new EmailControllerApi(defaultClient);
+    List<UUID> inboxId = Arrays.asList(); // List<UUID> | Optional inbox ids to filter by. Can be repeated. By default will use all inboxes belonging to your account.
     Integer page = 0; // Integer | Optional page index in email list pagination
     Integer size = 20; // Integer | Optional page size in email list pagination
     String sort = "ASC"; // String | Optional createdAt sort direction ASC or DESC
-    Boolean unreadOnly = false; // Boolean | Optional filter for unread emails only
+    Boolean unreadOnly = false; // Boolean | Optional filter for unread emails only. All emails are considered unread until they are viewed in the dashboard or requested directly
     try {
       PageEmailProjection result = apiInstance.getEmailsPaginated(inboxId, page, size, sort, unreadOnly);
       System.out.println(result);
@@ -572,11 +651,11 @@ public class Example {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **inboxId** | [**List&lt;UUID&gt;**](UUID.md)| Optional inbox ids to filter by. Can be repeated | [optional]
+ **inboxId** | [**List&lt;UUID&gt;**](UUID.md)| Optional inbox ids to filter by. Can be repeated. By default will use all inboxes belonging to your account. | [optional]
  **page** | **Integer**| Optional page index in email list pagination | [optional] [default to 0]
  **size** | **Integer**| Optional page size in email list pagination | [optional] [default to 20]
  **sort** | **String**| Optional createdAt sort direction ASC or DESC | [optional] [default to ASC] [enum: ASC, DESC]
- **unreadOnly** | **Boolean**| Optional filter for unread emails only | [optional] [default to false]
+ **unreadOnly** | **Boolean**| Optional filter for unread emails only. All emails are considered unread until they are viewed in the dashboard or requested directly | [optional] [default to false]
 
 ### Return type
 
@@ -603,9 +682,9 @@ Name | Type | Description  | Notes
 # **getRawEmailContents**
 > String getRawEmailContents(emailId)
 
-Get Raw Email Content
+Get raw email string
 
-Returns a raw, unparsed and unprocessed email
+Returns a raw, unparsed, and unprocessed email. If your client has issues processing the response it is likely due to the response content-type which is text/plain. If you need a JSON response content-type use the getRawEmailJson endpoint
 
 ### Example
 ```java
@@ -666,6 +745,146 @@ Name | Type | Description  | Notes
 ### HTTP response details
 | Status code | Description | Response headers |
 |-------------|-------------|------------------|
+**200** | text/plain raw email |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+<a name="getRawEmailJson"></a>
+# **getRawEmailJson**
+> RawEmailJson getRawEmailJson(emailId)
+
+Get raw email in JSON
+
+Returns a raw, unparsed, and unprocessed email wrapped in a JSON response object for easier handling when compared with the getRawEmail text/plain response
+
+### Example
+```java
+// Import classes:
+import com.mailslurp.client.ApiClient;
+import com.mailslurp.client.ApiException;
+import com.mailslurp.client.Configuration;
+import com.mailslurp.client.auth.*;
+import com.mailslurp.client.models.*;
+import com.mailslurp.api.api.EmailControllerApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.mailslurp.com");
+    
+    // Configure API key authorization: API_KEY
+    ApiKeyAuth API_KEY = (ApiKeyAuth) defaultClient.getAuthentication("API_KEY");
+    API_KEY.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //API_KEY.setApiKeyPrefix("Token");
+
+    EmailControllerApi apiInstance = new EmailControllerApi(defaultClient);
+    UUID emailId = new UUID(); // UUID | emailId
+    try {
+      RawEmailJson result = apiInstance.getRawEmailJson(emailId);
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling EmailControllerApi#getRawEmailJson");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **emailId** | [**UUID**](.md)| emailId |
+
+### Return type
+
+[**RawEmailJson**](RawEmailJson.md)
+
+### Authorization
+
+[API_KEY](../README.md#API_KEY)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+<a name="getUnreadEmailCount"></a>
+# **getUnreadEmailCount**
+> UnreadCount getUnreadEmailCount()
+
+Get unread email count
+
+Get number of emails unread
+
+### Example
+```java
+// Import classes:
+import com.mailslurp.client.ApiClient;
+import com.mailslurp.client.ApiException;
+import com.mailslurp.client.Configuration;
+import com.mailslurp.client.auth.*;
+import com.mailslurp.client.models.*;
+import com.mailslurp.api.api.EmailControllerApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.mailslurp.com");
+    
+    // Configure API key authorization: API_KEY
+    ApiKeyAuth API_KEY = (ApiKeyAuth) defaultClient.getAuthentication("API_KEY");
+    API_KEY.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //API_KEY.setApiKeyPrefix("Token");
+
+    EmailControllerApi apiInstance = new EmailControllerApi(defaultClient);
+    try {
+      UnreadCount result = apiInstance.getUnreadEmailCount();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling EmailControllerApi#getUnreadEmailCount");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**UnreadCount**](UnreadCount.md)
+
+### Authorization
+
+[API_KEY](../README.md#API_KEY)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
 **200** | OK |  -  |
 **401** | Unauthorized |  -  |
 **403** | Forbidden |  -  |
@@ -677,7 +896,7 @@ Name | Type | Description  | Notes
 
 Validate email
 
-Validate HTML content of email
+Validate the HTML content of email if HTML is found. Considered valid if no HTML.
 
 ### Example
 ```java
