@@ -28,7 +28,7 @@ import java.io.IOException;
  * Options for uploading files for attachments. When sending emails with the API that require attachments first upload each attachment. Then use the returned attachment ID in your SendEmailOptions when sending an email. This way you can use attachments multiple times once they have been uploaded.
  */
 @ApiModel(description = "Options for uploading files for attachments. When sending emails with the API that require attachments first upload each attachment. Then use the returned attachment ID in your SendEmailOptions when sending an email. This way you can use attachments multiple times once they have been uploaded.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-15T11:55:03.941557+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-15T11:55:54.663251+01:00[Europe/Berlin]")
 public class UploadAttachmentOptions {
   public static final String SERIALIZED_NAME_BASE64_CONTENTS = "base64Contents";
   @SerializedName(SERIALIZED_NAME_BASE64_CONTENTS)

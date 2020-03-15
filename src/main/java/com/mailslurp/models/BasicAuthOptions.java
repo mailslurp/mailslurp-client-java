@@ -28,7 +28,7 @@ import java.io.IOException;
  * Basic Authentication options for webhooks. Will be used is present when calling webhook endpoints.
  */
 @ApiModel(description = "Basic Authentication options for webhooks. Will be used is present when calling webhook endpoints.")
-@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-15T11:55:03.941557+01:00[Europe/Berlin]")
+@javax.annotation.Generated(value = "org.openapitools.codegen.languages.JavaClientCodegen", date = "2020-03-15T11:55:54.663251+01:00[Europe/Berlin]")
 public class BasicAuthOptions {
   public static final String SERIALIZED_NAME_USERNAME = "username";
   @SerializedName(SERIALIZED_NAME_USERNAME)
