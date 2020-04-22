@@ -168,7 +168,7 @@ Name | Type | Description  | Notes
 
 Fetch inbox&#39;s latest email or if empty wait for an email to arrive
 
-Will return either the last received email or wait for an email to arrive and return that. If you need to wait for an email for a non-empty inbox see the other receive methods such as waitForNthEmail or waitForEmailCount.
+Will return either the last received email or wait for an email to arrive and return that. If you need to wait for an email for a non-empty inbox set &#x60;unreadOnly&#x3D;true&#x60; or see the other receive methods such as &#x60;waitForNthEmail&#x60; or &#x60;waitForEmailCount&#x60;.
 
 ### Example
 ```java
@@ -194,7 +194,7 @@ public class Example {
     WaitForControllerApi apiInstance = new WaitForControllerApi(defaultClient);
     UUID inboxId = new UUID(); // UUID | Id of the inbox we are fetching emails from
     Long timeout = 56L; // Long | Max milliseconds to wait
-    Boolean unreadOnly = false; // Boolean | Optional filter for unread only
+    Boolean unreadOnly = false; // Boolean | Optional filter for unread only.
     try {
       Email result = apiInstance.waitForLatestEmail(inboxId, timeout, unreadOnly);
       System.out.println(result);
@@ -215,7 +215,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **inboxId** | [**UUID**](.md)| Id of the inbox we are fetching emails from | [optional]
  **timeout** | **Long**| Max milliseconds to wait | [optional]
- **unreadOnly** | **Boolean**| Optional filter for unread only | [optional] [default to false]
+ **unreadOnly** | **Boolean**| Optional filter for unread only. | [optional] [default to false]
 
 ### Return type
 

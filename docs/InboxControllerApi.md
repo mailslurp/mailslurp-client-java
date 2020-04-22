@@ -11,6 +11,7 @@ Method | HTTP request | Description
 [**getEmails**](InboxControllerApi.md#getEmails) | **GET** /inboxes/{inboxId}/emails | Get emails in an Inbox
 [**getInbox**](InboxControllerApi.md#getInbox) | **GET** /inboxes/{inboxId} | Get Inbox
 [**getInboxEmailsPaginated**](InboxControllerApi.md#getInboxEmailsPaginated) | **GET** /inboxes/{inboxId}/emails/paginated | Get inbox emails paginated
+[**getInboxTags**](InboxControllerApi.md#getInboxTags) | **GET** /inboxes/tags | Get inbox tags
 [**getInboxes**](InboxControllerApi.md#getInboxes) | **GET** /inboxes | List Inboxes / Email Addresses
 [**sendEmail**](InboxControllerApi.md#sendEmail) | **POST** /inboxes/{inboxId} | Send Email
 [**setInboxFavourited**](InboxControllerApi.md#setInboxFavourited) | **PUT** /inboxes/{inboxId}/favourite | Set inbox favourited state
@@ -237,7 +238,7 @@ null (empty response body)
 
 <a name="getAllInboxes"></a>
 # **getAllInboxes**
-> PageInboxProjection getAllInboxes(favourite, page, search, size, sort)
+> PageInboxProjection getAllInboxes(favourite, page, search, size, sort, tag)
 
 List Inboxes Paginated
 
@@ -270,8 +271,9 @@ public class Example {
     String search = "search_example"; // String | Optionally filter by search words partial matching ID, tags, name, and email address
     Integer size = 20; // Integer | Optional page size in inbox list pagination
     String sort = "ASC"; // String | Optional createdAt sort direction ASC or DESC
+    String tag = "tag_example"; // String | Optionally filter by tags
     try {
-      PageInboxProjection result = apiInstance.getAllInboxes(favourite, page, search, size, sort);
+      PageInboxProjection result = apiInstance.getAllInboxes(favourite, page, search, size, sort, tag);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling InboxControllerApi#getAllInboxes");
@@ -293,6 +295,7 @@ Name | Type | Description  | Notes
  **search** | **String**| Optionally filter by search words partial matching ID, tags, name, and email address | [optional]
  **size** | **Integer**| Optional page size in inbox list pagination | [optional] [default to 20]
  **sort** | **String**| Optional createdAt sort direction ASC or DESC | [optional] [default to ASC] [enum: ASC, DESC]
+ **tag** | **String**| Optionally filter by tags | [optional]
 
 ### Return type
 
@@ -529,6 +532,74 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**PageEmailPreview**](PageEmailPreview.md)
+
+### Authorization
+
+[API_KEY](../README.md#API_KEY)
+
+### HTTP request headers
+
+ - **Content-Type**: Not defined
+ - **Accept**: application/json
+
+### HTTP response details
+| Status code | Description | Response headers |
+|-------------|-------------|------------------|
+**200** | OK |  -  |
+**401** | Unauthorized |  -  |
+**403** | Forbidden |  -  |
+**404** | Not Found |  -  |
+
+<a name="getInboxTags"></a>
+# **getInboxTags**
+> List&lt;String&gt; getInboxTags()
+
+Get inbox tags
+
+Get all inbox tags
+
+### Example
+```java
+// Import classes:
+import com.mailslurp.client.ApiClient;
+import com.mailslurp.client.ApiException;
+import com.mailslurp.client.Configuration;
+import com.mailslurp.client.auth.*;
+import com.mailslurp.client.models.*;
+import com.mailslurp.api.api.InboxControllerApi;
+
+public class Example {
+  public static void main(String[] args) {
+    ApiClient defaultClient = Configuration.getDefaultApiClient();
+    defaultClient.setBasePath("https://api.mailslurp.com");
+    
+    // Configure API key authorization: API_KEY
+    ApiKeyAuth API_KEY = (ApiKeyAuth) defaultClient.getAuthentication("API_KEY");
+    API_KEY.setApiKey("YOUR API KEY");
+    // Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+    //API_KEY.setApiKeyPrefix("Token");
+
+    InboxControllerApi apiInstance = new InboxControllerApi(defaultClient);
+    try {
+      List<String> result = apiInstance.getInboxTags();
+      System.out.println(result);
+    } catch (ApiException e) {
+      System.err.println("Exception when calling InboxControllerApi#getInboxTags");
+      System.err.println("Status code: " + e.getCode());
+      System.err.println("Reason: " + e.getResponseBody());
+      System.err.println("Response headers: " + e.getResponseHeaders());
+      e.printStackTrace();
+    }
+  }
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+**List&lt;String&gt;**
 
 ### Authorization
 

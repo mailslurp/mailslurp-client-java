@@ -82,7 +82,7 @@ Name | Type | Description  | Notes
 
 <a name="uploadMultipartForm"></a>
 # **uploadMultipartForm**
-> List&lt;String&gt; uploadMultipartForm(file, contentType, filename)
+> List&lt;String&gt; uploadMultipartForm(file, contentType, filename, xFilename)
 
 Upload an attachment for sending using Multipart Form
 
@@ -113,8 +113,9 @@ public class Example {
     File file = new File("/path/to/file"); // File | file
     String contentType = "contentType_example"; // String | contentType
     String filename = "filename_example"; // String | filename
+    String xFilename = "xFilename_example"; // String | x-filename
     try {
-      List<String> result = apiInstance.uploadMultipartForm(file, contentType, filename);
+      List<String> result = apiInstance.uploadMultipartForm(file, contentType, filename, xFilename);
       System.out.println(result);
     } catch (ApiException e) {
       System.err.println("Exception when calling AttachmentControllerApi#uploadMultipartForm");
@@ -134,6 +135,7 @@ Name | Type | Description  | Notes
  **file** | **File**| file |
  **contentType** | **String**| contentType | [optional]
  **filename** | **String**| filename | [optional]
+ **xFilename** | **String**| x-filename | [optional]
 
 ### Return type
 
