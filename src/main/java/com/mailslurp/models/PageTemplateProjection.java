@@ -348,18 +348,18 @@ public class PageTemplateProjection {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PageTemplateProjection page«TemplateProjection» = (PageTemplateProjection) o;
-    return Objects.equals(this.content, page«TemplateProjection».content) &&
-        Objects.equals(this.empty, page«TemplateProjection».empty) &&
-        Objects.equals(this.first, page«TemplateProjection».first) &&
-        Objects.equals(this.last, page«TemplateProjection».last) &&
-        Objects.equals(this.number, page«TemplateProjection».number) &&
-        Objects.equals(this.numberOfElements, page«TemplateProjection».numberOfElements) &&
-        Objects.equals(this.pageable, page«TemplateProjection».pageable) &&
-        Objects.equals(this.size, page«TemplateProjection».size) &&
-        Objects.equals(this.sort, page«TemplateProjection».sort) &&
-        Objects.equals(this.totalElements, page«TemplateProjection».totalElements) &&
-        Objects.equals(this.totalPages, page«TemplateProjection».totalPages);
+    PageTemplateProjection page_TemplateProjection_ = (PageTemplateProjection) o;
+    return Objects.equals(this.content, page_TemplateProjection_.content) &&
+        Objects.equals(this.empty, page_TemplateProjection_.empty) &&
+        Objects.equals(this.first, page_TemplateProjection_.first) &&
+        Objects.equals(this.last, page_TemplateProjection_.last) &&
+        Objects.equals(this.number, page_TemplateProjection_.number) &&
+        Objects.equals(this.numberOfElements, page_TemplateProjection_.numberOfElements) &&
+        Objects.equals(this.pageable, page_TemplateProjection_.pageable) &&
+        Objects.equals(this.size, page_TemplateProjection_.size) &&
+        Objects.equals(this.sort, page_TemplateProjection_.sort) &&
+        Objects.equals(this.totalElements, page_TemplateProjection_.totalElements) &&
+        Objects.equals(this.totalPages, page_TemplateProjection_.totalPages);
   }
 
   @Override

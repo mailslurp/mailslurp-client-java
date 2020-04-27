@@ -348,18 +348,18 @@ public class PageWebhookProjection {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PageWebhookProjection page«WebhookProjection» = (PageWebhookProjection) o;
-    return Objects.equals(this.content, page«WebhookProjection».content) &&
-        Objects.equals(this.empty, page«WebhookProjection».empty) &&
-        Objects.equals(this.first, page«WebhookProjection».first) &&
-        Objects.equals(this.last, page«WebhookProjection».last) &&
-        Objects.equals(this.number, page«WebhookProjection».number) &&
-        Objects.equals(this.numberOfElements, page«WebhookProjection».numberOfElements) &&
-        Objects.equals(this.pageable, page«WebhookProjection».pageable) &&
-        Objects.equals(this.size, page«WebhookProjection».size) &&
-        Objects.equals(this.sort, page«WebhookProjection».sort) &&
-        Objects.equals(this.totalElements, page«WebhookProjection».totalElements) &&
-        Objects.equals(this.totalPages, page«WebhookProjection».totalPages);
+    PageWebhookProjection page_WebhookProjection_ = (PageWebhookProjection) o;
+    return Objects.equals(this.content, page_WebhookProjection_.content) &&
+        Objects.equals(this.empty, page_WebhookProjection_.empty) &&
+        Objects.equals(this.first, page_WebhookProjection_.first) &&
+        Objects.equals(this.last, page_WebhookProjection_.last) &&
+        Objects.equals(this.number, page_WebhookProjection_.number) &&
+        Objects.equals(this.numberOfElements, page_WebhookProjection_.numberOfElements) &&
+        Objects.equals(this.pageable, page_WebhookProjection_.pageable) &&
+        Objects.equals(this.size, page_WebhookProjection_.size) &&
+        Objects.equals(this.sort, page_WebhookProjection_.sort) &&
+        Objects.equals(this.totalElements, page_WebhookProjection_.totalElements) &&
+        Objects.equals(this.totalPages, page_WebhookProjection_.totalPages);
   }
 
   @Override

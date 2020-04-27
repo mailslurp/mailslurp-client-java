@@ -348,18 +348,18 @@ public class PageEmailPreview {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PageEmailPreview page«EmailPreview» = (PageEmailPreview) o;
-    return Objects.equals(this.content, page«EmailPreview».content) &&
-        Objects.equals(this.empty, page«EmailPreview».empty) &&
-        Objects.equals(this.first, page«EmailPreview».first) &&
-        Objects.equals(this.last, page«EmailPreview».last) &&
-        Objects.equals(this.number, page«EmailPreview».number) &&
-        Objects.equals(this.numberOfElements, page«EmailPreview».numberOfElements) &&
-        Objects.equals(this.pageable, page«EmailPreview».pageable) &&
-        Objects.equals(this.size, page«EmailPreview».size) &&
-        Objects.equals(this.sort, page«EmailPreview».sort) &&
-        Objects.equals(this.totalElements, page«EmailPreview».totalElements) &&
-        Objects.equals(this.totalPages, page«EmailPreview».totalPages);
+    PageEmailPreview page_EmailPreview_ = (PageEmailPreview) o;
+    return Objects.equals(this.content, page_EmailPreview_.content) &&
+        Objects.equals(this.empty, page_EmailPreview_.empty) &&
+        Objects.equals(this.first, page_EmailPreview_.first) &&
+        Objects.equals(this.last, page_EmailPreview_.last) &&
+        Objects.equals(this.number, page_EmailPreview_.number) &&
+        Objects.equals(this.numberOfElements, page_EmailPreview_.numberOfElements) &&
+        Objects.equals(this.pageable, page_EmailPreview_.pageable) &&
+        Objects.equals(this.size, page_EmailPreview_.size) &&
+        Objects.equals(this.sort, page_EmailPreview_.sort) &&
+        Objects.equals(this.totalElements, page_EmailPreview_.totalElements) &&
+        Objects.equals(this.totalPages, page_EmailPreview_.totalPages);
   }
 
   @Override

@@ -47,7 +47,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.mailslurp</groupId>
   <artifactId>mailslurp-client</artifactId>
-  <version>7.0.10</version>
+  <version>7.0.11</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -57,7 +57,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.mailslurp:mailslurp-client:7.0.10"
+compile "com.mailslurp:mailslurp-client:7.0.11"
 ```
 
 ### Others
@@ -70,7 +70,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/mailslurp-client-7.0.10.jar`
+* `target/mailslurp-client-7.0.11.jar`
 * `target/lib/*.jar`
 
 ## Getting Started

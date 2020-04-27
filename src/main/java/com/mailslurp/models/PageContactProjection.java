@@ -348,18 +348,18 @@ public class PageContactProjection {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PageContactProjection page«ContactProjection» = (PageContactProjection) o;
-    return Objects.equals(this.content, page«ContactProjection».content) &&
-        Objects.equals(this.empty, page«ContactProjection».empty) &&
-        Objects.equals(this.first, page«ContactProjection».first) &&
-        Objects.equals(this.last, page«ContactProjection».last) &&
-        Objects.equals(this.number, page«ContactProjection».number) &&
-        Objects.equals(this.numberOfElements, page«ContactProjection».numberOfElements) &&
-        Objects.equals(this.pageable, page«ContactProjection».pageable) &&
-        Objects.equals(this.size, page«ContactProjection».size) &&
-        Objects.equals(this.sort, page«ContactProjection».sort) &&
-        Objects.equals(this.totalElements, page«ContactProjection».totalElements) &&
-        Objects.equals(this.totalPages, page«ContactProjection».totalPages);
+    PageContactProjection page_ContactProjection_ = (PageContactProjection) o;
+    return Objects.equals(this.content, page_ContactProjection_.content) &&
+        Objects.equals(this.empty, page_ContactProjection_.empty) &&
+        Objects.equals(this.first, page_ContactProjection_.first) &&
+        Objects.equals(this.last, page_ContactProjection_.last) &&
+        Objects.equals(this.number, page_ContactProjection_.number) &&
+        Objects.equals(this.numberOfElements, page_ContactProjection_.numberOfElements) &&
+        Objects.equals(this.pageable, page_ContactProjection_.pageable) &&
+        Objects.equals(this.size, page_ContactProjection_.size) &&
+        Objects.equals(this.sort, page_ContactProjection_.sort) &&
+        Objects.equals(this.totalElements, page_ContactProjection_.totalElements) &&
+        Objects.equals(this.totalPages, page_ContactProjection_.totalPages);
   }
 
   @Override

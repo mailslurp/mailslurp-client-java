@@ -2,7 +2,7 @@ lazy val root = (project in file(".")).
   settings(
     organization := "com.mailslurp",
     name := "mailslurp-client",
-    version := "7.0.10",
+    version := "7.0.11",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),
     javacOptions in compile ++= Seq("-Xlint:deprecation"),

@@ -348,18 +348,18 @@ public class PageAlias {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PageAlias page«Alias» = (PageAlias) o;
-    return Objects.equals(this.content, page«Alias».content) &&
-        Objects.equals(this.empty, page«Alias».empty) &&
-        Objects.equals(this.first, page«Alias».first) &&
-        Objects.equals(this.last, page«Alias».last) &&
-        Objects.equals(this.number, page«Alias».number) &&
-        Objects.equals(this.numberOfElements, page«Alias».numberOfElements) &&
-        Objects.equals(this.pageable, page«Alias».pageable) &&
-        Objects.equals(this.size, page«Alias».size) &&
-        Objects.equals(this.sort, page«Alias».sort) &&
-        Objects.equals(this.totalElements, page«Alias».totalElements) &&
-        Objects.equals(this.totalPages, page«Alias».totalPages);
+    PageAlias page_Alias_ = (PageAlias) o;
+    return Objects.equals(this.content, page_Alias_.content) &&
+        Objects.equals(this.empty, page_Alias_.empty) &&
+        Objects.equals(this.first, page_Alias_.first) &&
+        Objects.equals(this.last, page_Alias_.last) &&
+        Objects.equals(this.number, page_Alias_.number) &&
+        Objects.equals(this.numberOfElements, page_Alias_.numberOfElements) &&
+        Objects.equals(this.pageable, page_Alias_.pageable) &&
+        Objects.equals(this.size, page_Alias_.size) &&
+        Objects.equals(this.sort, page_Alias_.sort) &&
+        Objects.equals(this.totalElements, page_Alias_.totalElements) &&
+        Objects.equals(this.totalPages, page_Alias_.totalPages);
   }
 
   @Override

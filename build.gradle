@@ -3,7 +3,7 @@ apply plugin: 'eclipse'
 apply plugin: 'java'
 
 group = 'com.mailslurp'
-version = '7.0.10'
+version = '7.0.11'
 
 buildscript {
     repositories {

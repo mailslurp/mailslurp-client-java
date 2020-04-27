@@ -348,18 +348,18 @@ public class PageGroupProjection {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    PageGroupProjection page«GroupProjection» = (PageGroupProjection) o;
-    return Objects.equals(this.content, page«GroupProjection».content) &&
-        Objects.equals(this.empty, page«GroupProjection».empty) &&
-        Objects.equals(this.first, page«GroupProjection».first) &&
-        Objects.equals(this.last, page«GroupProjection».last) &&
-        Objects.equals(this.number, page«GroupProjection».number) &&
-        Objects.equals(this.numberOfElements, page«GroupProjection».numberOfElements) &&
-        Objects.equals(this.pageable, page«GroupProjection».pageable) &&
-        Objects.equals(this.size, page«GroupProjection».size) &&
-        Objects.equals(this.sort, page«GroupProjection».sort) &&
-        Objects.equals(this.totalElements, page«GroupProjection».totalElements) &&
-        Objects.equals(this.totalPages, page«GroupProjection».totalPages);
+    PageGroupProjection page_GroupProjection_ = (PageGroupProjection) o;
+    return Objects.equals(this.content, page_GroupProjection_.content) &&
+        Objects.equals(this.empty, page_GroupProjection_.empty) &&
+        Objects.equals(this.first, page_GroupProjection_.first) &&
+        Objects.equals(this.last, page_GroupProjection_.last) &&
+        Objects.equals(this.number, page_GroupProjection_.number) &&
+        Objects.equals(this.numberOfElements, page_GroupProjection_.numberOfElements) &&
+        Objects.equals(this.pageable, page_GroupProjection_.pageable) &&
+        Objects.equals(this.size, page_GroupProjection_.size) &&
+        Objects.equals(this.sort, page_GroupProjection_.sort) &&
+        Objects.equals(this.totalElements, page_GroupProjection_.totalElements) &&
+        Objects.equals(this.totalPages, page_GroupProjection_.totalPages);
   }
 
   @Override
