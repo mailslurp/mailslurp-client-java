@@ -1,0 +1,23 @@
+
+
+# PageSentEmailProjection
+
+Paginated sent email results. Page index starts at zero. Projection results may omit larger entity fields. For fetching a full sent email entity use the projection ID with individual method calls.
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**content** | [**List&lt;SentEmailProjection&gt;**](SentEmailProjection) | Collection of items |  [optional]
+**pageable** | [**Pageable**](Pageable) |  |  [optional]
+**size** | **Integer** | Size of page requested |  [optional]
+**number** | **Integer** | Page number starting at 0 |  [optional]
+**totalPages** | **Integer** | Total number of pages available |  [optional]
+**numberOfElements** | **Integer** | Number of items returned |  [optional]
+**totalElements** | **Long** | Total number of items available for querying |  [optional]
+**last** | **Boolean** |  |  [optional]
+**sort** | [**Sort**](Sort) |  |  [optional]
+**first** | **Boolean** |  |  [optional]
+**empty** | **Boolean** |  |  [optional]
+
+
+
