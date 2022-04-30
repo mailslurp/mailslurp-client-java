@@ -1,0 +1,15 @@
+
+
+# BounceProjection
+
+Bounced email event
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | [**UUID**](UUID) |  |  [optional]
+**sender** | **String** |  | 
+**createdAt** | [**OffsetDateTime**](OffsetDateTime) |  | 
+
+
+
