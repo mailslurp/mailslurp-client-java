@@ -1,0 +1,24 @@
+
+
+# SentEmailProjection
+
+Collection of items
+## Properties
+
+Name | Type | Description | Notes
+------------ | ------------- | ------------- | -------------
+**id** | [**UUID**](UUID) |  | 
+**from** | **String** |  |  [optional]
+**userId** | [**UUID**](UUID) |  | 
+**subject** | **String** |  |  [optional]
+**inboxId** | [**UUID**](UUID) |  | 
+**bodyMD5Hash** | **String** |  |  [optional]
+**bcc** | **List&lt;String&gt;** |  | 
+**cc** | **List&lt;String&gt;** |  | 
+**virtualSend** | **Boolean** |  | 
+**attachments** | **List&lt;String&gt;** |  | 
+**createdAt** | [**OffsetDateTime**](OffsetDateTime) |  | 
+**to** | **List&lt;String&gt;** |  | 
+
+
+
