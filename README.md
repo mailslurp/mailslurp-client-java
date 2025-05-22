@@ -5,8 +5,6 @@ Create real email addresses on demand. Send and receive emails and attachments f
 MailSlurp is an email API service for creating and using real email addresses in code. 
 You can create then send and receive emails and attachments in Java and JVM languages.
 
-> For the Kotlin version see [mailslurp-client-kotlin](https://search.maven.org/artifact/com.mailslurp/mailslurp-client-kotlin).
-
 ## Quick links
 
 - [API documentation](https://docs.mailslurp.com/api/)
